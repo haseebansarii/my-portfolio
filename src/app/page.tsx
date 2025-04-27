@@ -888,13 +888,13 @@ export default function Home() {
                 <div className="w-12 h-12 rounded-full overflow-hidden mr-4 relative">
                   <Image 
                     src="/images/testimonial1.jpg" 
-                    alt="Sarah Johnson" 
+                    alt="Sachin warma" 
                     fill 
                     className="object-cover"
                   />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-800 dark:text-white">Sarah Johnson</h4>
+                  <h4 className="font-bold text-gray-800 dark:text-white">Sachin warma</h4>
                   <p className="text-gray-500 dark:text-gray-400 text-sm">CEO, TechStart Inc.</p>
                 </div>
               </div>
@@ -983,7 +983,7 @@ export default function Home() {
             {/* Blog Post 1 */}
             <div className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <div className="relative h-56 overflow-hidden">
-                <Image src="/images/blog1.jpg" alt="Blog 1" fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                <Image src="/images/blog2.jpg" alt="Blog 1" fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div className="absolute top-4 right-4 bg-white dark:bg-gray-800 text-xs font-medium px-2 py-1 rounded-full text-primary-500 dark:text-primary-400 shadow-sm">
                   Web Development
@@ -1018,7 +1018,7 @@ export default function Home() {
             {/* Blog Post 2 */}
             <div className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="relative h-56 overflow-hidden">
-                <Image src="/images/blog2.jpg" alt="Blog 2" fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                <Image src="/imagesblog1.jpg" alt="Blog 2" fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-r from-secondary-500/20 to-accent-500/20 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div className="absolute top-4 right-4 bg-white dark:bg-gray-800 text-xs font-medium px-2 py-1 rounded-full text-secondary-500 dark:text-secondary-400 shadow-sm">
                   Mobile Development

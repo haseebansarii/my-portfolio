@@ -1,0 +1,94 @@
+
+# Developer Profile
+
+**Name:** [Mohammad Haseeb]  
+**Role:** Full-Stack Developer (React | React Native | Next.js | Node.js)
+
+---
+
+## About Me
+
+I am a passionate and experienced Full-Stack Developer with strong expertise in both web and mobile app development. Over the years, I have successfully delivered multiple projects from idea to launch, using modern frameworks and technologies. I specialize in building high-quality, scalable, and user-friendly applications with a focus on performance and clean code.
+
+I am confident in managing both frontend and backend tasks, ensuring seamless integration between design, user experience, and backend functionality.
+
+---
+
+## Technical Skills
+
+**Frontend Development:**
+- React.js
+- Next.js
+- React Native (Expo CLI and Bare Workflow)
+- Tailwind CSS
+- Bootstrap
+- JavaScript (ES6+)
+
+**Backend Development:**
+- Node.js
+- Express.js
+
+**Databases:**
+- MongoDB
+- PostgreSQL
+- MySQL
+
+**Cloud Services / Backend as a Service (BaaS):**
+- Firebase (Authentication, Firestore, Cloud Functions)
+- Supabase (Authentication, Database, Edge Functions, Storage)
+
+**Other Skills:**
+- REST API Development
+- Third-party API Integration (Twilio, Payment Gateways, Google Maps, etc.)
+- Authentication (Phone, Email, Social)
+- Real-time Features (Chat, Notifications)
+- Git and GitHub
+- Agile Development Practices
+- Mobile-first and Responsive Design
+
+---
+
+## Major Projects
+
+**1. Intelligent Car Rental System**  
+A full-stack mobile and web app allowing users to rent cars on a peer-to-peer basis.  
+- Features: Multi-step booking process, real-time chat between renters and owners, payment integration, admin panel for car approvals.
+- Tech Used: React Native Expo, Supabase, PostgreSQL.
+
+**2. Modern Dating App**  
+Designed and developed a dating platform with swipe-based matching, chat, and profile verification.  
+- Features: Geo-location based matches, phone and email verification, profile recommendations.
+- Tech Used: React Native, Firebase, Node.js, Express.js.
+
+**3. Basketball Matchmaking Platform**  
+Created a platform for basketball players to find and organize matches, with an admin dashboard to manage users and tournaments.  
+- Features: Match booking, player ranking system, event scheduling, admin analytics dashboard.
+- Tech Used: Next.js, Tailwind CSS, MongoDB, Node.js.
+
+**4. Other Notable Projects:**  
+- Food Delivery App (React Native + Firebase)  
+- Gym Management Mobile App  
+- University Management Web System (React.js + MySQL)  
+- Hostel Management System (Full Stack Web App)  
+- Multiple small freelance projects involving bug fixes, new feature development, and performance optimization.
+
+---
+
+## Why Work With Me?
+
+- I understand the importance of delivering clean, maintainable, and scalable code.
+- I can independently manage full projects or collaborate within a team environment.
+- I always stay up-to-date with the latest best practices and technologies.
+- I prioritize good communication, problem-solving, and long-term client satisfaction.
+
+---
+
+## Availability
+
+- Remote / Onsite (Flexible)  
+- Full-time / Part-time / Contract-based opportunities
+
+---
+
+## Let's Build Something Amazing Together!
+

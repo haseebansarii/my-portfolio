@@ -1168,10 +1168,10 @@ export default function Home() {
                     </a>
                    
   
-   <a href="https://www.fiverr.com/NNlRBxN" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white dark:hover:bg-primary-500 transition-colors">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-fiverr" viewBox="0 0 16 16">
-    <path d="M11.29 10.71c0 .48-.4.88-.88.88H5.6c-.48 0-.88-.4-.88-.88V5.6c0-.48.4-.88.88-.88h4.81c.48 0 .88.4.88.88v5.11z"/>
-    <path d="M5.98 10.25h1.09V8.13c0-.4.33-.73.73-.73s.73.33.73.73v2.12h1.09V8.13c0-.4.33-.73.73-.73s.73.33.73.73v2.12h1.09V8.13c0-1.01-.82-1.82-1.82-1.82-.58 0-1.1.27-1.43.7-.33-.43-.85-.7-1.43-.7-1.01 0-1.82.82-1.82 1.82v2.12z"/>
+   <a href="https://www.fiverr.com/username" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-primary-500 hover:text-white dark:hover:bg-primary-500 transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-fiverr" viewBox="0 0 24 24">
+    <path d="M15.757 13.87v-3.348h1.432v3.349h1.608v1.17h-1.608v1.55h-1.432v-1.55H10.79v-1.17c1.26-1.292 3.96-4.042 4.967-5.336zm-2.403-3.348h-1.40v1.846a2.329 2.329 0 0 1-2.326 2.326h-.773v1.353h3.052v3.132H8.857v-3.132h-.726v-1.353h.726a.973.973 0 0 0 .972-.973v-3.16a2.328 2.328 0 0 1 2.326-2.326h3.098v1.286h-1.9z"/>
+    <path d="M23.5 11.7c0 6.45-5.25 11.7-11.7 11.7S.1 18.15.1 11.7 5.35 0 11.8 0s11.7 5.25 11.7 11.7zm-2.6 0c0-5.02-4.08-9.1-9.1-9.1s-9.1 4.08-9.1 9.1 4.08 9.1 9.1 9.1 9.1-4.08 9.1-9.1z" fill-rule="nonzero"/>
   </svg>
 </a>
 

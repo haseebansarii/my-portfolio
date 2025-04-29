@@ -576,7 +576,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-secondary-500 opacity-90 z-10"></div>
               <div className="absolute inset-0 overflow-hidden">
                 <Image 
-                  src="/images/p1.png" 
+                  src="/images/tools/p1.png" 
                   alt="Intelligent Car Rental System" 
                   fill 
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -618,7 +618,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-secondary-500 to-accent-500 opacity-90 z-10"></div>
               <div className="absolute inset-0 overflow-hidden">
                 <Image 
-                  src="/images/p2.png" 
+                  src="/images/tools/p2.png" 
                   alt="E-Commerce Platform" 
                   fill 
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -660,7 +660,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-accent-500 to-success-500 opacity-90 z-10"></div>
               <div className="absolute inset-0 overflow-hidden">
                 <Image 
-                  src="/images/p3.png" 
+                  src="/images/tools/p3.png" 
                   alt="Task Management App" 
                   fill 
                   className="object-cover group-hover:scale-110 transition-transform duration-500"

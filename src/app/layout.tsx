@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
+import "../styles/transparent-cards.css";
 import Header from "../components/Header"; 
 import Footer from "../components/Footer"; 
+import Background3D from "../components/Background3D";
 import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,6 +24,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
+          <Background3D />
           <div className="flex flex-col min-h-screen">
             <Header />
             <main className="flex-grow">{children}</main>

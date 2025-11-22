@@ -1,0 +1,63 @@
+/* Make all cards semi-transparent to show 3D background */
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(10px);
+}
+
+.dark .bg-white {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark .dark\:bg-gray-800 {
+  background-color: rgba(31, 41, 55, 0.7) !important;
+  backdrop-filter: blur(10px);
+}
+
+.dark .dark\:bg-gray-900 {
+  background-color: rgba(17, 24, 39, 0.7) !important;
+  backdrop-filter: blur(10px);
+}
+
+.dark .dark\:bg-gray-950 {
+  background-color: rgba(3, 7, 18, 0.7) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Section backgrounds */
+.bg-gray-50 {
+  background-color: rgba(249, 250, 251, 0.3) !important;
+}
+
+/* Gradient backgrounds for sections */
+.dark .dark\:from-gray-900 {
+  --tw-gradient-from: rgba(17, 24, 39, 0.3) !important;
+}
+
+.dark .dark\:to-gray-800 {
+  --tw-gradient-to: rgba(31, 41, 55, 0.3) !important;
+}
+
+.dark .dark\:from-gray-800 {
+  --tw-gradient-from: rgba(31, 41, 55, 0.3) !important;
+}
+
+.dark .dark\:to-gray-900 {
+  --tw-gradient-to: rgba(17, 24, 39, 0.3) !important;
+}
+
+/* Light mode gradient backgrounds */
+.from-white {
+  --tw-gradient-from: rgba(255, 255, 255, 0.3) !important;
+}
+
+.to-gray-50 {
+  --tw-gradient-to: rgba(249, 250, 251, 0.3) !important;
+}
+
+.from-gray-50 {
+  --tw-gradient-from: rgba(249, 250, 251, 0.3) !important;
+}
+
+.to-white {
+  --tw-gradient-to: rgba(255, 255, 255, 0.3) !important;
+}

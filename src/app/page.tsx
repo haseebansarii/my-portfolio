@@ -13,11 +13,11 @@ export default function Home() {
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden py-20">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-primary-100/30 to-transparent dark:from-primary-900/20 dark:to-transparent -z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-primary-100/10 to-transparent dark:from-primary-900/10 dark:to-transparent -z-10"></div>
         
         {/* Animated background elements */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-secondary-200/20 dark:bg-secondary-800/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent-200/20 dark:bg-accent-800/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 bg-secondary-200/10 dark:bg-secondary-800/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent-200/10 dark:bg-accent-800/5 rounded-full blur-3xl animate-float"></div>
         
         <motion.div 
           className="text-center max-w-3xl mx-auto px-4"

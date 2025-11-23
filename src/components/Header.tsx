@@ -63,9 +63,9 @@ export default function Header() {
   ];
 
   const socialLinks = [
-    { icon: <FiGithub />, href: "https://github.com/", label: "GitHub" },
-    { icon: <FiLinkedin />, href: "https://linkedin.com/in/", label: "LinkedIn" },
-    { icon: <FiTwitter />, href: "https://twitter.com/", label: "Twitter" },
+    { icon: <FiGithub />, href: "https://github.com/haseebansarii", label: "GitHub" },
+    { icon: <FiLinkedin />, href: "https://www.linkedin.com/in/haseeb-ansari-7168272b5/", label: "LinkedIn" },
+    { icon: <span className="font-bold text-sm">fr</span>, href: "https://www.fiverr.com/haseebansari_", label: "Fiverr" },
   ];
 
   const toggleMenu = () => {

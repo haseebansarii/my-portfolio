@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
+import AnimatedText from "../AnimatedText";
+import TypewriterText from "../TypewriterText";
 
 export default function Hero() {
   return (
@@ -55,22 +57,44 @@ export default function Hero() {
             Full-Stack Developer
           </motion.span>
           
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-          >
-            Hi, I'm <span className="gradient-text">Mohammad Haeeseeb</span>
-          </motion.h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <AnimatedText 
+              text="Hi, I'm" 
+              type="word"
+              delay={0.4}
+            />
+            {" "}
+            <AnimatedText 
+              text="Mohammad Haseeb" 
+              type="char"
+              delay={0.7}
+              className="gradient-text inline-block"
+            />
+          </h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 1.5 }}
+            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-4 max-w-xl"
+          >
+            I build exceptional digital experiences with modern technologies.
+          </motion.p>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.7 }}
             className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-xl"
           >
-            I build exceptional digital experiences with modern technologies. Specializing in React, React Native, Next.js, and Node.js.
+            Specializing in{" "}
+            <TypewriterText 
+              texts={["React", "React Native", "Next.js", "Node.js", "TypeScript"]}
+              className="gradient-text font-semibold"
+              typingSpeed={100}
+              deletingSpeed={50}
+              delayBetweenTexts={1500}
+            />
           </motion.p>
           
           <motion.div 

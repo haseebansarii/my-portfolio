@@ -11,20 +11,20 @@ export default function Footer() {
     {
       name: "GitHub",
       icon: <FiGithub className="w-5 h-5" />,
-      href: "https://github.com/",
+      href: "https://github.com/haseebansarii",
       color: "hover:bg-gray-800 hover:text-white"
     },
     {
       name: "LinkedIn",
       icon: <FiLinkedin className="w-5 h-5" />,
-      href: "https://linkedin.com/in/",
+      href: "https://www.linkedin.com/in/haseeb-ansari-7168272b5/",
       color: "hover:bg-blue-600 hover:text-white"
     },
     {
-      name: "Twitter",
-      icon: <FiTwitter className="w-5 h-5" />,
-      href: "https://twitter.com/",
-      color: "hover:bg-sky-500 hover:text-white"
+      name: "Fiverr",
+      icon: <span className="font-bold text-base">fr</span>,
+      href: "https://www.fiverr.com/haseebansari_",
+      color: "hover:bg-green-500 hover:text-white"
     },
     {
       name: "Instagram",
@@ -84,12 +84,12 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 pt-20 overflow-hidden">
+    <footer className="relative bg-white dark:bg-gray-900 pt-20 overflow-hidden border-t border-gray-200 dark:border-gray-800">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-100/30 dark:bg-primary-900/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-100/30 dark:bg-secondary-900/10 rounded-full blur-3xl -z-10"></div>
-      
+      <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-100/20 dark:bg-primary-900/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-100/20 dark:bg-secondary-900/10 rounded-full blur-3xl -z-10"></div>
+
       {/* Back to top button */}
       <div className="flex justify-center -mt-10 mb-16">
         <motion.button
@@ -104,7 +104,7 @@ export default function Footer() {
           <FiArrowUp className="w-5 h-5 text-primary-500 dark:text-primary-400 z-20 group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors" />
         </motion.button>
       </div>
-      
+
       <div className="container mx-auto px-4">
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-12">
@@ -124,7 +124,7 @@ export default function Footer() {
                 Mohammad Haseeb
               </h3>
             </motion.div>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +134,7 @@ export default function Footer() {
             >
               I craft beautiful, functional digital experiences with modern web technologies. Specializing in React, React Native, Next.js, and Node.js.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -173,7 +173,7 @@ export default function Footer() {
               ))}
             </motion.div>
           </div>
-          
+
           {/* Footer links */}
           <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 gap-8">
             {footerLinks.map((section, sectionIndex) => (
@@ -187,7 +187,7 @@ export default function Footer() {
                 >
                   {section.title}
                 </motion.h4>
-                
+
                 <motion.ul
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -197,8 +197,8 @@ export default function Footer() {
                 >
                   {section.links.map((link) => (
                     <li key={link.name}>
-                      <Link 
-                        href={link.href} 
+                      <Link
+                        href={link.href}
                         className="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors flex items-center"
                         {...(link.download ? { download: true } : {})}
                       >
@@ -211,7 +211,7 @@ export default function Footer() {
               </div>
             ))}
           </div>
-          
+
           {/* Newsletter */}
           <div className="lg:col-span-3">
             <motion.div
@@ -222,11 +222,11 @@ export default function Footer() {
             >
               <h4 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">Stay Updated</h4>
               <p className="text-gray-600 dark:text-gray-400 mb-4">Subscribe to my newsletter for the latest updates.</p>
-              
+
               <div className="relative">
-                <input 
-                  type="email" 
-                  placeholder="Your email" 
+                <input
+                  type="email"
+                  placeholder="Your email"
                   className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-primary-500 dark:focus:border-primary-500 pr-12"
                 />
                 <button className="absolute right-1 top-1 p-2 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-lg hover:shadow-lg transition-shadow duration-300">
@@ -236,20 +236,43 @@ export default function Footer() {
             </motion.div>
           </div>
         </div>
-        
+
         {/* Copyright */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           viewport={{ once: true }}
-          className="py-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center text-gray-600 dark:text-gray-400 text-sm"
+          className="py-8 border-t border-gray-200 dark:border-gray-800"
         >
-          <p> {currentYear} Mohammad Haseeb. All rights reserved.</p>
-          <div className="flex items-center mt-4 md:mt-0">
-            <span>Made with</span>
-            <FiHeart className="w-4 h-4 mx-1 text-red-500" />
-            <span>using Next.js & Tailwind CSS</span>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex flex-col md:flex-row items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+              <p className="flex items-center">
+                <span className="mr-1">©</span>
+                <span>{currentYear}</span>
+                <span className="mx-2">•</span>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">Mohammad Haseeb</span>
+              </p>
+              <span className="hidden md:inline">•</span>
+              <p>All rights reserved.</p>
+            </div>
+
+            <div className="flex flex-col md:flex-row items-center gap-4 text-sm">
+              <div className="flex items-center text-gray-600 dark:text-gray-400">
+                <span>Built with</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-xs font-medium">Next.js</span>
+                <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-xs font-medium">Tailwind CSS</span>
+                <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-xs font-medium">Three.js</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-center items-center gap-2 text-xs text-gray-500 dark:text-gray-500">
+            <p>Designed & Developed by Mohammad Haseeb</p>
+            <span className="hidden md:inline">|</span>
+            <p>Full-Stack Developer & UI/UX Enthusiast</p>
           </div>
         </motion.div>
       </div>

@@ -40,11 +40,11 @@ export default function Navbar() {
         initial={{ y: -80 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 mobile-safe ${
           isScrolled ? 'glass-nav' : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-safe container-safe">
           <div className="flex items-center justify-between h-16 md:h-20">
             <button onClick={() => scrollTo('home')} className="flex items-center gap-2 group">
               <div className="w-9 h-9 rounded-xl glass-badge flex items-center justify-center transition-all duration-300">
@@ -132,9 +132,9 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-[#f0f4f8]/95 dark:bg-[#080c12]/95 backdrop-blur-2xl md:hidden pt-20"
+            className="fixed inset-0 z-40 bg-[#f0f4f8]/95 dark:bg-[#080c12]/95 backdrop-blur-2xl md:hidden pt-20 mobile-safe mobile-no-overflow"
           >
-            <div className="flex flex-col items-center gap-2 p-6">
+            <div className="flex flex-col items-center gap-2 p-6 mobile-padding container-safe">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.id}

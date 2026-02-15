@@ -58,8 +58,8 @@ export default function HeroSection() {
   const typedRole = useTypewriter(roles, 80, 40, 2000);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      <div className="absolute inset-0 z-0">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 mobile-safe">
+      <div className="absolute inset-0 z-0 mobile-safe">
         <video
           src="/iStock-2218919293.mp4"
           autoPlay
@@ -73,7 +73,7 @@ export default function HeroSection() {
       <div className="absolute top-1/4 -left-32 w-72 h-72 bg-sky-400/[0.08] dark:bg-sky-500/[0.04] rounded-full blur-[120px]" />
       <div className="absolute bottom-1/4 -right-32 w-72 h-72 bg-teal-400/[0.08] dark:bg-teal-500/[0.04] rounded-full blur-[120px]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mobile-safe container-safe">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="order-2 lg:order-1">
             <motion.div

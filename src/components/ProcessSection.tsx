@@ -5,8 +5,19 @@ import { processSteps } from '../data/portfolio';
 
 export default function ProcessSection() {
   return (
-    <section id="process" className="relative py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="process" className="relative py-24 lg:py-32 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <video
+          src="/iStock-1257047131.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="// how I work"
           title="My Process"

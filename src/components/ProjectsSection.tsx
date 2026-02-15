@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import SectionHeading from './SectionHeading';
-import { projects } from '../data/portfolio';
+import { projects, personalInfo } from '../data/portfolio';
 
 const filters = [
   { id: 'all', label: 'All Projects' },
@@ -112,7 +112,7 @@ export default function ProjectsSection() {
         <AnimatedSection delay={0.3}>
           <div className="text-center mt-12">
             <a
-              href="https://github.com/haseebhaseeb"
+              href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-slate-400 hover:text-sky-600 dark:text-gray-500 dark:hover:text-sky-300 font-mono text-sm transition-colors group"

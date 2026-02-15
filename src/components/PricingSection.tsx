@@ -21,15 +21,15 @@ export default function PricingSection() {
                 whileHover={{ y: -4 }}
                 className={`relative h-full flex flex-col p-6 lg:p-8 rounded-2xl transition-all duration-300 glass-shine ${
                   pkg.highlighted
-                    ? 'glass-panel border-sky-600/20 dark:border-sky-400/20 shadow-[0_0_30px_rgba(56,189,248,0.06)]'
-                    : 'glass-card glass-card-hover'
+                    ? 'glass-panel border-sky-600/20 dark:border-sky-400/20 shadow-[0_0_30px_rgba(56,189,248,0.06)] mt-6'
+                    : 'glass-card glass-card-hover mt-6'
                 }`}
               >
                 {pkg.highlighted && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="px-4 py-1 text-xs font-mono bg-slate-900 dark:bg-white/90 text-white dark:text-[#080c12] rounded-full font-semibold backdrop-blur-sm">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                    {/* <span className="px-4 py-1 text-xs font-mono bg-slate-900 dark:bg-white/90 text-white dark:text-[#080c12] rounded-full font-semibold backdrop-blur-sm shadow-lg">
                       Most Popular
-                    </span>
+                    </span> */}
                   </div>
                 )}
 

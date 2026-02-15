@@ -8,10 +8,12 @@ export const personalInfo = {
   title: 'Full Stack Developer',
   tagline: 'Building Digital Experiences That Matter',
   bio: `I'm a passionate Full Stack Developer with deep expertise in the MERN stack, React Native (Expo), Supabase, and Firebase. I craft high-performance web and mobile applications that solve real-world problems. Available on Fiverr for freelance projects, I bring dedication, clean code, and pixel-perfect implementations to every project I work on.`,
-  fiverr: 'https://www.fiverr.com/haseebhaseeb',
-  github: 'https://github.com/haseebhaseeb',
-  linkedin: 'https://linkedin.com/in/haseebhaseeb',
-  email: 'haseebhaseeb@example.com',
+  fiverr: 'https://www.fiverr.com/haseebansari_',
+  github: 'https://github.com/haseebansarii',
+  linkedin: 'https://www.linkedin.com/in/haseebansarii/',
+  email: 'ansarihaseeb615@gmail.com',
+  phone: '+92 3237738253',
+  address: 'Bilal Park, Kamoke, Punjab, Pakistan',
 };
 
 export const roles = [
@@ -111,10 +113,10 @@ export const services = [
 ];
 
 export const stats = [
-  { label: 'Projects Completed', value: '50+' },
+  { label: 'Projects Completed', value: '70+' },
   { label: 'Happy Clients', value: '40+' },
   { label: 'Years Experience', value: '4+' },
-  { label: 'Five Star Reviews', value: '35+' },
+  { label: 'Five Star Reviews', value: '5 Star' },
 ];
 
 export const testimonials = [
@@ -292,7 +294,7 @@ export const education = [
   {
     period: '2020 - 2024',
     degree: 'Bachelor of Science in Computer Science',
-    institution: 'University',
+    institution: 'University of the Punjab',
     description: 'Focused on software engineering, data structures, algorithms, and modern web technologies.',
   },
 ];

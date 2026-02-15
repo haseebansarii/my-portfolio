@@ -60,9 +60,12 @@ export default function HeroSection() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0 z-0">
-        <img
-          src="/iStock-1483065942.jpg"
-          alt=""
+        <video
+          src="/iStock-2218919293.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover opacity-[0.18] dark:opacity-[0.2]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/60 via-transparent to-[#f0f4f8] dark:from-[#080c12]/60 dark:via-transparent dark:to-[#080c12]" />

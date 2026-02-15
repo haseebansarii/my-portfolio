@@ -7,9 +7,12 @@ export default function ServicesSection() {
   return (
     <section id="services" className="relative py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img
-          src="/image2.png"
-          alt=""
+        <video
+          src="/iStock-1391168913.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover object-top opacity-[0.15] dark:opacity-[0.15]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />

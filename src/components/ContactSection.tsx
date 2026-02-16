@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, ExternalLink, Github, Linkedin, Mail, MessageSquare, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+import { Send, ExternalLink, Github, Linkedin, Mail, MessageSquare, CheckCircle, AlertCircle, Loader, MessageCircle, Phone } from 'lucide-react';
 import emailjs from 'emailjs-com';
 import AnimatedSection from './AnimatedSection';
 import SectionHeading from './SectionHeading';
@@ -92,6 +92,7 @@ export default function ContactSection() {
                 <div className="space-y-3">
                   {[
                     { icon: Mail, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}` },
+                    { icon: MessageCircle, label: 'WhatsApp', value: '+92 323 773 8253', href: personalInfo.whatsapp },
                     { icon: Github, label: 'GitHub', value: 'github.com/haseebansarii', href: personalInfo.github },
                     { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/haseebansarii', href: personalInfo.linkedin },
                   ].map((channel) => (

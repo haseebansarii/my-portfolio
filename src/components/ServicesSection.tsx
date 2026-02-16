@@ -13,7 +13,7 @@ export default function ServicesSection() {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover object-top opacity-[0.15] dark:opacity-[0.15]"
+          className="w-full h-full object-cover object-top opacity-[0.15] dark:opacity-[0.55]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />
       </div>

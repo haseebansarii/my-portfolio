@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, ExternalLink, Download } from 'lucide-react';
+import { ChevronDown, ExternalLink, Download, MessageCircle } from 'lucide-react';
 import { useTypewriter } from '../hooks/useTypewriter';
 import GlitchText from './GlitchText';
 import { personalInfo, roles, terminalLines } from '../data/portfolio';
@@ -66,7 +66,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-[0.18] dark:opacity-[0.2]"
+          className="w-full h-full object-cover opacity-[0.18] dark:opacity-[0.6]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/60 via-transparent to-[#f0f4f8] dark:from-[#080c12]/60 dark:via-transparent dark:to-[#080c12]" />
       </div>
@@ -140,6 +140,15 @@ export default function HeroSection() {
               >
                 Hire Me on Fiverr
                 <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+              <a
+                href={personalInfo.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all hover:shadow-lg backdrop-blur-sm"
+              >
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp
               </a>
               <button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}

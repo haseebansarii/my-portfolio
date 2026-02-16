@@ -13,6 +13,7 @@ export const personalInfo = {
   linkedin: 'https://www.linkedin.com/in/haseebansarii/',
   email: 'ansarihaseeb615@gmail.com',
   phone: '+92 3237738253',
+  whatsapp: 'https://wa.me/923237738253',
   address: 'Bilal Park, Kamoke, Punjab, Pakistan',
 };
 

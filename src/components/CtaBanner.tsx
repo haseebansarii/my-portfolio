@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap } from 'lucide-react';
+import { ArrowRight, Zap, MessageCircle } from 'lucide-react';
 import { personalInfo } from '../data/portfolio';
 
 export default function CtaBanner() {
@@ -17,7 +17,7 @@ export default function CtaBanner() {
             <img
               src="/image4.png"
               alt=""
-              className="w-full h-full object-cover opacity-[0.18] dark:opacity-[0.2]"
+              className="w-full h-full object-cover opacity-[0.18] dark:opacity-[0.4]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#f0f4f8]/60 via-[#f0f4f8]/30 to-[#f0f4f8]/60 dark:from-[#080c12]/70 dark:via-[#080c12]/40 dark:to-[#080c12]/70" />
           </div>
@@ -42,7 +42,7 @@ export default function CtaBanner() {
             </h2>
 
             <p className="text-slate-500 dark:text-gray-400 text-lg max-w-xl mx-auto mb-8">
-              Let's discuss your project and build something exceptional together. Get in touch on Fiverr or send me a message.
+              Let's discuss your project and build something exceptional together. Get in touch via Fiverr, WhatsApp, or send me a message.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -54,6 +54,15 @@ export default function CtaBanner() {
               >
                 Hire Me on Fiverr
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href={personalInfo.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 px-8 py-3.5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all hover:shadow-lg backdrop-blur-sm"
+              >
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp Chat
               </a>
               <a
                 href="#contact"

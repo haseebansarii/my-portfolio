@@ -24,7 +24,7 @@ export default function SkillsSection() {
         <img
           src="/iStock-1483065942.jpg"
           alt=""
-          className="w-full h-full object-cover opacity-[0.15] dark:opacity-[0.18]"
+          className="w-full h-full object-cover opacity-[0.15] dark:opacity-[0.48]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />
       </div>

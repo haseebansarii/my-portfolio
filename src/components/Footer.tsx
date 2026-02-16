@@ -1,4 +1,4 @@
-import { Terminal, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Terminal, Github, Linkedin, Mail, ExternalLink, MessageCircle } from 'lucide-react';
 import { personalInfo } from '../data/portfolio';
 
 export default function Footer() {
@@ -44,6 +44,7 @@ export default function Footer() {
               {[
                 { icon: Github, href: personalInfo.github, label: 'GitHub' },
                 { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
+                { icon: MessageCircle, href: personalInfo.whatsapp, label: 'WhatsApp' },
                 { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
                 { icon: ExternalLink, href: personalInfo.fiverr, label: 'Fiverr' },
               ].map((social) => (

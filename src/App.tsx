@@ -30,7 +30,7 @@ export default function App() {
         <HeroSection />
         <div className="relative">
           <AboutSection />
-          <StatsSection />
+          {/* <StatsSection /> */}
           <ExperienceSection />
           <SkillsSection />
           <ProjectsSection />

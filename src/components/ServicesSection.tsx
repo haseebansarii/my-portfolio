@@ -13,6 +13,8 @@ export default function ServicesSection() {
           loop
           muted
           playsInline
+          preload="none"
+          loading="lazy"
           className="w-full h-full object-cover object-top opacity-[0.15] dark:opacity-[0.55]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />
@@ -27,9 +29,12 @@ export default function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <AnimatedSection key={service.title} delay={index * 0.1} direction={index % 2 === 0 ? 'left' : 'right'}>
-              <div className="group relative h-full p-6 lg:p-8 rounded-2xl glass-card glass-card-hover glass-shine transition-all duration-300">
+              <div 
+                className="group relative h-full p-6 lg:p-8 rounded-2xl transition-all duration-300 border border-white/[0.15] dark:border-white/[0.1] bg-white/[0.15] dark:bg-white/[0.02] hover:bg-white/[0.25] dark:hover:bg-white/[0.04] hover:border-white/[0.25] dark:hover:border-white/[0.15]"
+                style={{ backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
+              >
                 <div className="flex items-start gap-4 mb-5">
-                  <div className="w-12 h-12 rounded-xl glass-badge flex items-center justify-center shrink-0 group-hover:bg-white/[0.08] transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-white/[0.2] dark:bg-white/[0.05] border border-white/[0.3] dark:border-white/[0.1] flex items-center justify-center shrink-0 group-hover:bg-white/[0.3] dark:group-hover:bg-white/[0.08] transition-colors">
                     <service.icon className="w-6 h-6 text-sky-600 dark:text-sky-400" />
                   </div>
                   <div>

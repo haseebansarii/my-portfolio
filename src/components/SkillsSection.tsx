@@ -23,8 +23,7 @@ export default function SkillsSection() {
       <div className="absolute inset-0 z-0">
         <img
           src="/iStock-1483065942.jpg"
-          alt=""
-          className="w-full h-full object-cover opacity-[0.15] dark:opacity-[0.48]"
+          alt=""          loading="lazy"          className="w-full h-full object-cover opacity-[0.15] dark:opacity-[0.38]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />
       </div>
@@ -75,10 +74,11 @@ export default function SkillsSection() {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative p-5 rounded-xl glass-card glass-card-hover glass-shine transition-all duration-300"
+                className="group relative p-5 rounded-xl transition-all duration-300 border border-white/[0.15] dark:border-white/[0.1] bg-white/[0.15] dark:bg-white/[0.02] backdrop-blur-[6px] hover:bg-white/[0.25] dark:hover:bg-white/[0.04] hover:border-white/[0.25] dark:hover:border-white/[0.15]"
+                style={{ backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-10 h-10 rounded-lg glass-badge flex items-center justify-center group-hover:bg-white/[0.08] transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-white/[0.2] dark:bg-white/[0.05] border border-white/[0.3] dark:border-white/[0.1] flex items-center justify-center group-hover:bg-white/[0.3] dark:group-hover:bg-white/[0.08] transition-colors">
                     <skill.icon className="w-5 h-5 text-sky-600 dark:text-sky-400" />
                   </div>
                   <div className="flex-1">

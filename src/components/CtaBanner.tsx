@@ -17,6 +17,7 @@ export default function CtaBanner() {
             <img
               src="/image4.png"
               alt=""
+              loading="lazy"
               className="w-full h-full object-cover opacity-[0.18] dark:opacity-[0.4]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#f0f4f8]/60 via-[#f0f4f8]/30 to-[#f0f4f8]/60 dark:from-[#080c12]/70 dark:via-[#080c12]/40 dark:to-[#080c12]/70" />

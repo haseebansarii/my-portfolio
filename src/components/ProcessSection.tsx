@@ -13,6 +13,8 @@ export default function ProcessSection() {
           loop
           muted
           playsInline
+          preload="none"
+          loading="lazy"
           className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.55]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />
@@ -29,7 +31,8 @@ export default function ProcessSection() {
             <AnimatedSection key={step.step} delay={index * 0.08} direction={index % 2 === 0 ? 'left' : 'right'}>
               <motion.div
                 whileHover={{ y: -4 }}
-                className="group relative h-full p-6 rounded-2xl glass-card glass-card-hover glass-shine transition-all duration-300"
+                className="group relative h-full p-6 rounded-2xl transition-all duration-300 border border-white/[0.15] dark:border-white/[0.1] bg-white/[0.15] dark:bg-white/[0.02] hover:bg-white/[0.25] dark:hover:bg-white/[0.04] hover:border-white/[0.25] dark:hover:border-white/[0.15]"
+                style={{ backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
               >
                 <span className="block text-5xl font-bold text-slate-900/[0.04] dark:text-white/[0.04] font-mono mb-4 select-none">
                   {step.step}
@@ -39,7 +42,7 @@ export default function ProcessSection() {
                 </h3>
                 <p className="text-slate-400 dark:text-gray-500 text-sm leading-relaxed">{step.description}</p>
 
-                <div className="absolute top-6 right-6 w-8 h-8 rounded-lg glass-badge flex items-center justify-center">
+                <div className="absolute top-6 right-6 w-8 h-8 rounded-lg bg-white/[0.2] dark:bg-white/[0.05] border border-white/[0.3] dark:border-white/[0.1] flex items-center justify-center">
                   <span className="text-xs font-mono text-slate-400 dark:text-gray-500">{step.step}</span>
                 </div>
               </motion.div>

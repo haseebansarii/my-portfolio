@@ -21,6 +21,7 @@ export default function AboutSection() {
                 <img
                   src="https://images.pexels.com/photos/4974915/pexels-photo-4974915.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Developer workspace"
+                  loading="lazy"
                   className="w-full h-80 lg:h-96 object-cover opacity-60"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#f0f4f8] via-[#f0f4f8]/40 to-transparent dark:from-[#080c12] dark:via-[#080c12]/40" />

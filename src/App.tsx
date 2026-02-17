@@ -1,20 +1,23 @@
+import { lazy, Suspense } from 'react';
 import ParticleField from './components/ParticleField';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
-import StatsSection from './components/StatsSection';
-import ExperienceSection from './components/ExperienceSection';
-import SkillsSection from './components/SkillsSection';
-import ProjectsSection from './components/ProjectsSection';
-import ServicesSection from './components/ServicesSection';
-import PricingSection from './components/PricingSection';
-import ProcessSection from './components/ProcessSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import EducationSection from './components/EducationSection';
-import FaqSection from './components/FaqSection';
-import CtaBanner from './components/CtaBanner';
-import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
+
+// Lazy load components below the fold for better performance
+const StatsSection = lazy(() => import('./components/StatsSection'));
+const ExperienceSection = lazy(() => import('./components/ExperienceSection'));
+const SkillsSection = lazy(() => import('./components/SkillsSection'));
+const ProjectsSection = lazy(() => import('./components/ProjectsSection'));
+const ServicesSection = lazy(() => import('./components/ServicesSection'));
+const PricingSection = lazy(() => import('./components/PricingSection'));
+const ProcessSection = lazy(() => import('./components/ProcessSection'));
+const TestimonialsSection = lazy(() => import('./components/TestimonialsSection'));
+const EducationSection = lazy(() => import('./components/EducationSection'));
+const FaqSection = lazy(() => import('./components/FaqSection'));
+const CtaBanner = lazy(() => import('./components/CtaBanner'));
+const ContactSection = lazy(() => import('./components/ContactSection'));
+const Footer = lazy(() => import('./components/Footer'));
 
 export default function App() {
   return (
@@ -28,23 +31,27 @@ export default function App() {
       <Navbar />
       <main className="relative z-10 mobile-safe container-safe">
         <HeroSection />
-        <div className="relative">
-          <AboutSection />
-          {/* <StatsSection /> */}
-          <ExperienceSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ServicesSection />
-          <PricingSection />
-          <ProcessSection />
-          <TestimonialsSection />
-          <EducationSection />
-          <FaqSection />
-          <CtaBanner />
-          <ContactSection />
-        </div>
+        <Suspense fallback={<div className="h-screen" />}>
+          <div className="relative">
+            <AboutSection />
+            {/* <StatsSection /> */}
+            <ExperienceSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <ServicesSection />
+            <PricingSection />
+            <ProcessSection />
+            <TestimonialsSection />
+            <EducationSection />
+            <FaqSection />
+            <CtaBanner />
+            <ContactSection />
+          </div>
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div className="h-20" />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

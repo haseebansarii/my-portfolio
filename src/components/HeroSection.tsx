@@ -21,12 +21,13 @@ function TerminalWindow() {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.5 }}
-      className="w-full max-w-xl rounded-2xl overflow-hidden glass-panel glass-shine shadow-2xl"
+      className="w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl border border-white/[0.15] dark:border-white/[0.1] bg-white/[0.15] dark:bg-white/[0.02]"
+      style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
     >
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-black/[0.06] dark:border-white/[0.06]">
-        <div className="w-3 h-3 rounded-full bg-red-400/60 dark:bg-white/10" />
-        <div className="w-3 h-3 rounded-full bg-yellow-400/60 dark:bg-white/10" />
-        <div className="w-3 h-3 rounded-full bg-green-400/60 dark:bg-white/10" />
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-black/[0.06] dark:border-white/[0.06] bg-white/[0.1] dark:bg-white/[0.02]">
+ <div className="w-3 h-3 rounded-full bg-red-400/60 dark:bg-red-500" />
+        <div className="w-3 h-3 rounded-full bg-yellow-400/60 dark:bg-yellow-500" />
+        <div className="w-3 h-3 rounded-full bg-green-400/60 dark:bg-green-500" />
         <span className="ml-2 text-xs font-mono text-slate-500 dark:text-gray-500">haseeb@dev ~ zsh</span>
       </div>
       <div className="p-4 font-mono text-sm space-y-1 min-h-[200px]">
@@ -66,6 +67,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover opacity-[0.18] dark:opacity-[0.6]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/60 via-transparent to-[#f0f4f8] dark:from-[#080c12]/60 dark:via-transparent dark:to-[#080c12]" />
@@ -80,7 +82,8 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-badge mb-6"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 bg-white/[0.2] dark:bg-white/[0.05] border border-white/[0.3] dark:border-white/[0.1]"
+              style={{ backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-slate-500 dark:text-gray-400 text-sm font-mono">Available for Freelance</span>

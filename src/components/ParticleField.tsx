@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useTheme } from '../hooks/useTheme';
+import { isMobile } from '../utils/deviceDetection';
 
 interface Particle {
   x: number;
@@ -13,6 +14,11 @@ interface Particle {
 export default function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
+
+  // Disable on mobile for better performance
+  if (isMobile()) {
+    return null;
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current;

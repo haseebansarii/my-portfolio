@@ -4,9 +4,12 @@ import { ChevronDown, ExternalLink, Download, MessageCircle } from 'lucide-react
 import { useTypewriter } from '../hooks/useTypewriter';
 import GlitchText from './GlitchText';
 import { personalInfo, roles, terminalLines } from '../data/portfolio';
+import { isIOS, isMobile } from '../utils/deviceDetection';
 
 function TerminalWindow() {
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
+  const useMobileOptimization = isIOS() || isMobile();
+  const blurAmount = useMobileOptimization ? '4px' : '8px';
 
   useEffect(() => {
     terminalLines.forEach((line, index) => {
@@ -22,7 +25,7 @@ function TerminalWindow() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.5 }}
       className="w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl border border-white/[0.15] dark:border-white/[0.1] bg-white/[0.15] dark:bg-white/[0.02]"
-      style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
+      style={{ backdropFilter: `blur(${blurAmount})`, WebkitBackdropFilter: `blur(${blurAmount})` }}
     >
       <div className="flex items-center gap-2 px-4 py-3 border-b border-black/[0.06] dark:border-white/[0.06] bg-white/[0.1] dark:bg-white/[0.02]">
  <div className="w-3 h-3 rounded-full bg-red-400/60 dark:bg-red-500" />
@@ -57,6 +60,7 @@ function TerminalWindow() {
 
 export default function HeroSection() {
   const typedRole = useTypewriter(roles, 80, 40, 2000);
+  const useMobileOptimization = isIOS() || isMobile();
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 mobile-safe">

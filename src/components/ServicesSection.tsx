@@ -2,21 +2,33 @@ import { ArrowRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import SectionHeading from './SectionHeading';
 import { services, personalInfo } from '../data/portfolio';
+import { isIOS, isMobile } from '../utils/deviceDetection';
 
 export default function ServicesSection() {
+  const useMobileOptimization = isIOS() || isMobile();
+  
   return (
     <section id="services" className="relative py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <video
-          src="/iStock-1391168913.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="none"
-          loading="lazy"
-          className="w-full h-full object-cover object-top opacity-[0.15] dark:opacity-[0.55]"
-        />
+        {useMobileOptimization ? (
+          <img
+            src="/image2.png"
+            alt=""
+            loading="lazy"
+            className="w-full h-full object-cover object-top opacity-[0.15] dark:opacity-[0.55]"
+          />
+        ) : (
+          <video
+            src="/iStock-1391168913.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            loading="lazy"
+            className="w-full h-full object-cover object-top opacity-[0.15] dark:opacity-[0.55]"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />
       </div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

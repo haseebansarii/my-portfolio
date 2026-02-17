@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { isIOS, isMobile } from '../utils/deviceDetection';
 
 export function useTypewriter(texts: string[], typingSpeed = 80, deletingSpeed = 40, pauseDuration = 2000) {
-  const isMobileDevice = isIOS() || isMobile();
-  const [displayText, setDisplayText] = useState(isMobileDevice ? texts[0] : '');
+  const [displayText, setDisplayText] = useState('');
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -32,17 +30,11 @@ export function useTypewriter(texts: string[], typingSpeed = 80, deletingSpeed =
   }, [displayText, isDeleting, textIndex, texts, typingSpeed, deletingSpeed, pauseDuration]);
 
   useEffect(() => {
-    // Disable typewriter animation on mobile for performance
-    if (isMobileDevice) {
-      setDisplayText(texts[textIndex]);
-      return;
-    }
-
     const timeout = animate();
     return () => {
       if (timeout) clearTimeout(timeout);
     };
-  }, [animate, isMobileDevice, texts, textIndex]);
+  }, [animate]);
 
   return displayText;
 }

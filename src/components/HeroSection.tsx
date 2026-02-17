@@ -7,20 +7,17 @@ import { personalInfo, roles, terminalLines } from '../data/portfolio';
 import { isIOS, isMobile } from '../utils/deviceDetection';
 
 function TerminalWindow() {
+  const [visibleLines, setVisibleLines] = useState<number[]>([]);
   const useMobileOptimization = isIOS() || isMobile();
-  const [visibleLines, setVisibleLines] = useState<number[]>(useMobileOptimization ? terminalLines.map((_, i) => i) : []);
   const blurAmount = useMobileOptimization ? '4px' : '8px';
 
   useEffect(() => {
-    // Show all lines immediately on mobile for performance
-    if (useMobileOptimization) return;
-
     terminalLines.forEach((line, index) => {
       setTimeout(() => {
         setVisibleLines((prev) => [...prev, index]);
       }, line.delay);
     });
-  }, [useMobileOptimization]);
+  }, []);
 
   return (
     <motion.div
@@ -38,29 +35,19 @@ function TerminalWindow() {
       </div>
       <div className="p-4 font-mono text-sm space-y-1 min-h-[200px]">
         {terminalLines.map((line, index) => (
-          useMobileOptimization ? (
-            <div
-              key={index}
-              className={`flex gap-2 ${line.prefix ? 'text-slate-700 dark:text-gray-300' : 'text-sky-600 dark:text-sky-300'}`}
-            >
-              {line.prefix && <span className="text-slate-500 dark:text-gray-500 shrink-0">{line.prefix}</span>}
-              <span>{line.text}</span>
-            </div>
-          ) : (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{
-                opacity: visibleLines.includes(index) ? 1 : 0,
-                x: visibleLines.includes(index) ? 0 : -10,
-              }}
-              transition={{ duration: 0.3 }}
-              className={`flex gap-2 ${line.prefix ? 'text-slate-700 dark:text-gray-300' : 'text-sky-600 dark:text-sky-300'}`}
-            >
-              {line.prefix && <span className="text-slate-500 dark:text-gray-500 shrink-0">{line.prefix}</span>}
-              <span>{line.text}</span>
-            </motion.div>
-          )
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{
+              opacity: visibleLines.includes(index) ? 1 : 0,
+              x: visibleLines.includes(index) ? 0 : -10,
+            }}
+            transition={{ duration: 0.3 }}
+            className={`flex gap-2 ${line.prefix ? 'text-slate-700 dark:text-gray-300' : 'text-sky-600 dark:text-sky-300'}`}
+          >
+            {line.prefix && <span className="text-slate-500 dark:text-gray-500 shrink-0">{line.prefix}</span>}
+            <span>{line.text}</span>
+          </motion.div>
         ))}
         <div className="flex gap-2 items-center text-slate-700 dark:text-gray-300">
           <span className="text-slate-500 dark:text-gray-500">~$</span>

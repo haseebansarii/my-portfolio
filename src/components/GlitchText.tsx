@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { isIOS, isMobile } from '../utils/deviceDetection';
 
 interface GlitchTextProps {
   text: string;
@@ -10,8 +11,12 @@ export default function GlitchText({ text, className = '', as: Tag = 'span' }: G
   const [glitchedText, setGlitchedText] = useState(text);
   const [isGlitching, setIsGlitching] = useState(false);
   const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`0123456789';
+  const isMobileDevice = isIOS() || isMobile();
 
   useEffect(() => {
+    // Disable glitch animation on mobile for performance
+    if (isMobileDevice) return;
+
     const interval = setInterval(() => {
       setIsGlitching(true);
       let iterations = 0;
@@ -40,7 +45,7 @@ export default function GlitchText({ text, className = '', as: Tag = 'span' }: G
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [text]);
+  }, [text, isMobileDevice]);
 
   return (
     <Tag className={`${className} ${isGlitching ? 'text-glow' : ''}`}>

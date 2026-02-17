@@ -3,6 +3,7 @@ import ParticleField from './components/ParticleField';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
+import LoadingSpinner from './components/LoadingSpinner';
 
 // Lazy load components below the fold for better performance
 const StatsSection = lazy(() => import('./components/StatsSection'));
@@ -31,7 +32,7 @@ export default function App() {
       <Navbar />
       <main className="relative z-10 mobile-safe container-safe">
         <HeroSection />
-        <Suspense fallback={<div className="h-screen" />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <div className="relative">
             <AboutSection />
             {/* <StatsSection /> */}

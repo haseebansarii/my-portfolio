@@ -1,20 +1,21 @@
-import { Suspense, lazy } from 'react';
-import LoadingSpinner from '../components/LoadingSpinner';
-
-const ServicesSection = lazy(() => import('../components/ServicesSection'));
-const PricingSection = lazy(() => import('../components/PricingSection'));
-const ProcessSection = lazy(() => import('../components/ProcessSection'));
-const FaqSection = lazy(() => import('../components/FaqSection'));
+import Seo from '../components/Seo';
+import ServicesSection from '../components/ServicesSection';
+import PricingSection from '../components/PricingSection';
+import ProcessSection from '../components/ProcessSection';
+import FaqSection from '../components/FaqSection';
 
 export default function ServicesPage() {
   return (
     <div className="pt-16 md:pt-20">
-      <Suspense fallback={<LoadingSpinner />}>
-        <ServicesSection />
-        <PricingSection />
-        <ProcessSection />
-        <FaqSection />
-      </Suspense>
+      <Seo
+        title="Services & Pricing | Haseeb Ansari"
+        description="Freelance development services by Haseeb Ansari — full stack web apps, React Native mobile apps, API & backend development. See pricing, process and FAQs."
+        path="/services"
+      />
+      <ServicesSection />
+      <PricingSection />
+      <ProcessSection />
+      <FaqSection />
     </div>
   );
 }

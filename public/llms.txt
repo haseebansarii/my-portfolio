@@ -1,0 +1,26 @@
+# Haseeb Ansari — Full Stack Developer
+
+> Haseeb Ansari is a Full Stack Developer specializing in the MERN stack,
+> React Native (Expo), Supabase and Firebase. He builds high-performance web
+> and mobile applications and is available for freelance work on Fiverr.
+
+## About
+- Name: Haseeb Ansari
+- Role: Full Stack Developer
+- Location: Kamoke, Punjab, Pakistan
+- Core skills: React.js, React Native, Node.js/Express, TypeScript, Next.js,
+  MongoDB, PostgreSQL, Supabase, Firebase, Tailwind CSS, REST APIs / GraphQL
+
+## Pages
+- Home: https://www.mhaseeb.dev/
+- About: https://www.mhaseeb.dev/about
+- Skills & Experience: https://www.mhaseeb.dev/skills
+- Projects: https://www.mhaseeb.dev/projects
+- Services & Pricing: https://www.mhaseeb.dev/services
+- Contact: https://www.mhaseeb.dev/contact
+
+## Links
+- GitHub: https://github.com/haseebansarii
+- LinkedIn: https://www.linkedin.com/in/haseebansarii/
+- Fiverr: https://www.fiverr.com/haseebansari_
+- Email: ansarihaseeb615@gmail.com

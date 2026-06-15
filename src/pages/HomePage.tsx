@@ -1,41 +1,41 @@
-import { lazy, Suspense } from 'react';
+import Seo from '../components/Seo';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
-import LoadingSpinner from '../components/LoadingSpinner';
-
-// Lazy load components below the fold for better performance
-const ExperienceSection = lazy(() => import('../components/ExperienceSection'));
-const SkillsSection = lazy(() => import('../components/SkillsSection'));
-const ProjectsSection = lazy(() => import('../components/ProjectsSection'));
-const ServicesSection = lazy(() => import('../components/ServicesSection'));
-const PricingSection = lazy(() => import('../components/PricingSection'));
-const ProcessSection = lazy(() => import('../components/ProcessSection'));
-const TestimonialsSection = lazy(() => import('../components/TestimonialsSection'));
-const EducationSection = lazy(() => import('../components/EducationSection'));
-const FaqSection = lazy(() => import('../components/FaqSection'));
-const CtaBanner = lazy(() => import('../components/CtaBanner'));
-const ContactSection = lazy(() => import('../components/ContactSection'));
+import ExperienceSection from '../components/ExperienceSection';
+import SkillsSection from '../components/SkillsSection';
+import ProjectsSection from '../components/ProjectsSection';
+import ServicesSection from '../components/ServicesSection';
+import PricingSection from '../components/PricingSection';
+import ProcessSection from '../components/ProcessSection';
+import TestimonialsSection from '../components/TestimonialsSection';
+import EducationSection from '../components/EducationSection';
+import FaqSection from '../components/FaqSection';
+import CtaBanner from '../components/CtaBanner';
+import ContactSection from '../components/ContactSection';
 
 export default function HomePage() {
   return (
     <>
+      <Seo
+        title="Haseeb Ansari | Full Stack Developer (MERN, React Native)"
+        description="Full Stack Developer specializing in MERN, React Native, Supabase & Firebase. I build high-performance web and mobile apps. Available for freelance work on Fiverr."
+        path="/"
+      />
       <HeroSection />
-      <Suspense fallback={<LoadingSpinner />}>
-        <div className="relative">
-          <AboutSection />
-          <ExperienceSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ServicesSection />
-          <PricingSection />
-          <ProcessSection />
-          <TestimonialsSection />
-          <EducationSection />
-          <FaqSection />
-          <CtaBanner />
-          <ContactSection />
-        </div>
-      </Suspense>
+      <div className="relative">
+        <AboutSection />
+        <ExperienceSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ServicesSection />
+        <PricingSection />
+        <ProcessSection />
+        <TestimonialsSection />
+        <EducationSection />
+        <FaqSection />
+        <CtaBanner />
+        <ContactSection />
+      </div>
     </>
   );
 }

@@ -1,8 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import { Terminal, Github, Linkedin, Mail, ExternalLink, MessageCircle } from 'lucide-react';
 import { personalInfo } from '../data/portfolio';
 
+const quickLinks = [
+  { label: 'About', to: '/about' },
+  { label: 'Skills', to: '/skills' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Services', to: '/services' },
+  { label: 'Contact', to: '/contact' },
+];
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
 
   return (
     <footer className="relative border-t border-black/[0.06] dark:border-white/[0.06] bg-[#e8ecf0] dark:bg-[#060a10]">
@@ -26,13 +36,13 @@ export default function Footer() {
           <div>
             <h4 className="text-slate-900 dark:text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
             <div className="flex flex-col gap-2">
-              {['About', 'Skills', 'Projects', 'Services', 'Contact'].map((link) => (
+              {quickLinks.map((link) => (
                 <button
-                  key={link}
-                  onClick={() => document.getElementById(link.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })}
+                  key={link.to}
+                  onClick={() => navigate(link.to)}
                   className="text-slate-500 dark:text-gray-500 hover:text-sky-600 dark:hover:text-sky-300 text-sm transition-colors text-left w-fit"
                 >
-                  {link}
+                  {link.label}
                 </button>
               ))}
             </div>

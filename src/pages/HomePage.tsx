@@ -1,4 +1,5 @@
 import Seo from '../components/Seo';
+import { faqJsonLd, servicesJsonLd } from '../data/structuredData';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
 import ExperienceSection from '../components/ExperienceSection';
@@ -17,9 +18,10 @@ export default function HomePage() {
   return (
     <>
       <Seo
-        title="Haseeb Ansari | Full Stack Developer (MERN, React Native)"
-        description="Full Stack Developer specializing in MERN, React Native, Supabase & Firebase. I build high-performance web and mobile apps. Available for freelance work on Fiverr."
+        title="Haseeb Ansari — Full Stack, React Native & Supabase Developer"
+        description="Hire Haseeb Ansari, a full stack developer building MERN web apps, React Native mobile apps, and Supabase/Firebase backends with Next.js, Vite & AI features. Available for US clients on Fiverr."
         path="/"
+        jsonLd={[servicesJsonLd, faqJsonLd]}
       />
       <HeroSection />
       <div className="relative">

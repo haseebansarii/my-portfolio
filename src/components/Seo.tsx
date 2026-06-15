@@ -8,10 +8,14 @@ interface SeoProps {
   description: string;
   /** Route path beginning with "/" — e.g. "/about". Use "/" for home. */
   path: string;
+  /** Optional JSON-LD structured data object(s) injected into <head>. */
+  jsonLd?: object | object[];
 }
 
-export default function Seo({ title, description, path }: SeoProps) {
+export default function Seo({ title, description, path, jsonLd }: SeoProps) {
   const url = path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`;
+  const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+
   return (
     <Head>
       <title>{title}</title>
@@ -29,6 +33,12 @@ export default function Seo({ title, description, path }: SeoProps) {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={OG_IMAGE} />
+
+      {schemas.map((schema, i) => (
+        <script key={i} type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      ))}
     </Head>
   );
 }

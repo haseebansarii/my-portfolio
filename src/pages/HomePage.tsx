@@ -1,5 +1,6 @@
 import Seo from '../components/Seo';
 import { faqJsonLd, servicesJsonLd } from '../data/structuredData';
+import ScrollPath from '../components/ScrollPath';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
 import ExperienceSection from '../components/ExperienceSection';
@@ -24,7 +25,8 @@ export default function HomePage() {
         jsonLd={[servicesJsonLd, faqJsonLd]}
       />
       <HeroSection />
-      <div className="relative">
+      <div className="relative isolate">
+        <ScrollPath />
         <AboutSection />
         <ExperienceSection />
         <SkillsSection />

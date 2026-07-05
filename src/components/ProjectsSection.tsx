@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import SectionHeading from './SectionHeading';
+import TiltCard from './TiltCard';
 import { projects, personalInfo } from '../data/portfolio';
 
 const filters = [
@@ -63,10 +64,11 @@ export default function ProjectsSection() {
               <motion.div
                 key={project.title}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: index * 0.12, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative rounded-2xl overflow-hidden glass-card glass-card-hover glass-shine transition-all duration-500"
               >
+                <TiltCard className="group relative h-full rounded-2xl overflow-hidden glass-card glass-card-hover glass-shine transition-all duration-500">
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={project.image}
@@ -104,6 +106,7 @@ export default function ProjectsSection() {
                     ))}
                   </div>
                 </div>
+                </TiltCard>
               </motion.div>
             ))}
           </motion.div>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, ExternalLink, Download, MessageCircle } from 'lucide-react';
 import { useTypewriter } from '../hooks/useTypewriter';
 import GlitchText from './GlitchText';
+import MaskReveal from './MaskReveal';
 import { personalInfo, roles, terminalLines } from '../data/portfolio';
 import { isIOS, isMobile } from '../utils/deviceDetection';
 
@@ -62,6 +63,20 @@ export default function HeroSection() {
   const typedRole = useTypewriter(roles, 80, 40, 2000);
   const useMobileOptimization = isIOS() || isMobile();
 
+  // Live local time (PKT) — set after mount so SSG output stays stable.
+  const [localTime, setLocalTime] = useState('');
+  useEffect(() => {
+    const fmt = () =>
+      new Date().toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Karachi',
+        hour: 'numeric',
+        minute: '2-digit',
+      });
+    setLocalTime(fmt());
+    const id = setInterval(() => setLocalTime(fmt()), 30_000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 mobile-safe">
       <div className="absolute inset-0 z-0 mobile-safe">
@@ -90,23 +105,26 @@ export default function HeroSection() {
               style={{ backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-slate-500 dark:text-gray-400 text-sm font-mono">Available for Freelance</span>
+              <span className="text-slate-500 dark:text-gray-400 text-sm font-mono">
+                Available for projects
+                {localTime && (
+                  <span className="text-slate-400 dark:text-gray-500"> · {localTime} PKT</span>
+                )}
+              </span>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-2">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-2">
+              <MaskReveal delay={0.15}>
                 <span className="text-slate-500 dark:text-gray-500 text-lg sm:text-xl font-mono font-normal block mb-2">Hello, I'm</span>
+              </MaskReveal>
+              <MaskReveal delay={0.3} className="pb-[0.12em]">
                 <GlitchText
                   text={personalInfo.name}
                   as="span"
                   className="text-slate-900 dark:text-white block"
                 />
-              </h1>
-            </motion.div>
+              </MaskReveal>
+            </h1>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}

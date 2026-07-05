@@ -15,7 +15,7 @@ export default function ExperienceSection() {
 
         <div className="max-w-3xl mx-auto">
           {experience.map((item, index) => (
-            <AnimatedSection key={item.year} delay={index * 0.1} direction="right">
+            <AnimatedSection key={item.year} delay={index * 0.1} direction={index % 2 === 0 ? 'left' : 'right'}>
               <div className="relative flex gap-6 lg:gap-10 pb-12 last:pb-0">
                 <div className="flex flex-col items-center">
                   <motion.div

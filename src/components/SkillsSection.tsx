@@ -72,7 +72,8 @@ export default function SkillsSection() {
               <motion.div
                 key={skill.name}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-                animate={{ opacity: 1, x: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: index * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="group relative p-5 rounded-xl transition-all duration-300 border border-white/[0.15] dark:border-white/[0.1] bg-white/[0.15] dark:bg-white/[0.02] backdrop-blur-[6px] hover:bg-white/[0.25] dark:hover:bg-white/[0.04] hover:border-white/[0.25] dark:hover:border-white/[0.15]"
                 style={{ backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}

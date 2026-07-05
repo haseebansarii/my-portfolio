@@ -87,7 +87,7 @@ export default function HeroSection() {
           muted
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover opacity-[0.18] dark:opacity-[0.6]"
+          className="media-invert-light w-full h-full object-cover opacity-[0.25] dark:opacity-[0.6]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/60 via-transparent to-[#f0f4f8] dark:from-[#080c12]/60 dark:via-transparent dark:to-[#080c12]" />
       </div>

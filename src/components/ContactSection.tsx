@@ -56,7 +56,7 @@ export default function ContactSection() {
             src="/image4.png"
             alt=""
             loading="lazy"
-            className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15]"
+            className="media-invert-light w-full h-full object-cover opacity-[0.18] dark:opacity-[0.15]"
           />
         ) : (
           <video
@@ -67,7 +67,7 @@ export default function ContactSection() {
             playsInline
             preload="none"
             loading="lazy"
-            className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15]"
+            className="media-invert-light w-full h-full object-cover opacity-[0.18] dark:opacity-[0.15]"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />

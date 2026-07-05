@@ -63,17 +63,17 @@ export default function ProjectsSection() {
             {filtered.map((project, index) => (
               <motion.div
                 key={project.title}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -32 : 32, y: 16 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ delay: index * 0.12, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ delay: (index % 3) * 0.08, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
                 <TiltCard className="group relative h-full rounded-2xl overflow-hidden glass-card glass-card-hover glass-shine transition-all duration-500">
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="media-soften-light w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#f0f4f8] via-[#f0f4f8]/40 to-transparent dark:from-[#080c12] dark:via-[#080c12]/40" />
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">

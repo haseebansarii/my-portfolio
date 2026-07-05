@@ -23,7 +23,7 @@ export default function SkillsSection() {
       <div className="absolute inset-0 z-0">
         <img
           src="/iStock-1483065942.jpg"
-          alt=""          loading="lazy"          className="w-full h-full object-cover opacity-[0.15] dark:opacity-[0.38]"
+          alt=""          loading="lazy"          className="media-invert-light w-full h-full object-cover opacity-[0.22] dark:opacity-[0.38]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f0f4f8]/70 via-transparent to-[#f0f4f8]/70 dark:from-[#080c12]/80 dark:via-transparent dark:to-[#080c12]/80" />
       </div>
@@ -71,10 +71,10 @@ export default function SkillsSection() {
             {filtered.map((skill, index) => (
               <motion.div
                 key={skill.name}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -24 : 24 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ delay: index * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 className="group relative p-5 rounded-xl transition-all duration-300 border border-white/[0.15] dark:border-white/[0.1] bg-white/[0.15] dark:bg-white/[0.02] backdrop-blur-[6px] hover:bg-white/[0.25] dark:hover:bg-white/[0.04] hover:border-white/[0.25] dark:hover:border-white/[0.15]"
                 style={{ backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
               >
@@ -93,7 +93,7 @@ export default function SkillsSection() {
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.2 + index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
                     className="h-full rounded-full bg-gradient-to-r from-sky-500/60 to-sky-300/80"
                   />
                 </div>

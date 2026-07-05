@@ -79,9 +79,10 @@
         min-width: 300px;
       }
 
+      /* No base opacity:0 — "both" fill keeps lines hidden during their delay,
+         and if animations are disabled (battery saver etc.) text just shows. */
       .boot-lines .line {
-        opacity: 0;
-        animation: boot-in 0.15s ease-out forwards;
+        animation: boot-in 0.15s ease-out both;
       }
       .boot-lines .line:nth-child(1) { animation-delay: 0.05s; }
       .boot-lines .line:nth-child(2) { animation-delay: 0.3s; }
@@ -109,7 +110,8 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .boot-lines .line { animation-duration: 0.01s; animation-delay: 0s; }
+        .boot-lines .line { animation: none; }
+        .boot-cursor { animation: none; }
       }
     </style>
   </head>

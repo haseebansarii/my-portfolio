@@ -10,6 +10,25 @@
   }
 }
 
+/* Dark-themed media adaptation for light mode.
+   media-invert-light: smart-invert for decorative/ambient footage — dark
+   backgrounds become light, hue-rotate keeps colors from flipping.
+   media-soften-light: gentle lift for content images so they don't sit as
+   black slabs on the light background. Both are no-ops in dark mode. */
+.media-invert-light {
+  filter: invert(1) hue-rotate(180deg) brightness(1.05);
+}
+.dark .media-invert-light {
+  filter: none;
+}
+
+.media-soften-light {
+  filter: brightness(1.1) contrast(0.92) saturate(0.9);
+}
+.dark .media-soften-light {
+  filter: none;
+}
+
 /* Film grain overlay — subtle animated noise above the UI */
 .grain-overlay {
   position: fixed;
@@ -320,28 +339,14 @@
       backdrop-filter: blur(3px) !important;
       -webkit-backdrop-filter: blur(3px) !important;
     }
-    
-    /* Optimize animations for mobile */
-    * {
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-    }
   }
-  
+
   /* iOS-specific optimizations */
   @supports (-webkit-touch-callout: none) {
     /* Reduce blur effects on iOS */
     [style*="backdrop-filter"] {
       backdrop-filter: blur(2px) !important;
       -webkit-backdrop-filter: blur(2px) !important;
-    }
-    
-    /* Hardware acceleration for iOS */
-    * {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
     }
   }
 }

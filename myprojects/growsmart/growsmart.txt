@@ -1,0 +1,207 @@
+# GrowSmart — Portfolio Project Brief
+
+> **For the portfolio developer:** Yeh document GrowSmart project ka complete data hai — description, stack, features, screenshots plan aur ready-to-use copy. Sections 10–12 me direct copy-paste ready text hai website ke liye. Jahan `[ADD ...]` likha hai, wahan client se value confirm kar lena.
+
+---
+
+## 1. Project Snapshot
+
+| Field | Value |
+|---|---|
+| **Project Name** | GrowSmart (Grow Smart Authority App) |
+| **Type** | Cross-platform Mobile App (iOS + Android) + Web build |
+| **Category** | EdTech / E-Learning / LMS |
+| **Role** | Full-Stack Mobile Developer (solo — frontend, backend, database, payments, deployment) |
+| **Status** | v1.0.2 — Production ready; App Store & Play Store submission packs prepared |
+| **Timeline** | 4 milestones (setup & auth → courses → quizzes → payments, certificates & admin panel) |
+| **Client Type** | Education / training authority (client project) |
+| **Live Links** | App Store: `[ADD LINK]` · Play Store: `[ADD LINK]` · Website: `[ADD LINK]` |
+| **Repo** | Private `[ADD LINK if public]` |
+
+**One-line pitch:**
+A mobile-first learning platform where students enroll in free or paid courses, complete lessons and quizzes, track progress, and earn verifiable PDF certificates — backed by a full admin panel and Stripe payments.
+
+---
+
+## 2. Purpose & Problem Solved
+
+Small training institutes aur course authorities ke paas usually apna khud ka learning platform nahi hota — wo WhatsApp groups, Google Drive ya YouTube links par depend karte hain. Result: no progress tracking, no assessment, no proof of completion, aur paid content ka koi secure access control nahi.
+
+**GrowSmart solves this by providing:**
+
+1. **Structured learning** — random content ki jagah ordered lessons with a defined path.
+2. **Access control** — free vs paid courses; content sirf enrolled users ko visible, database level par enforce.
+3. **Assessment** — auto-graded multiple-choice quizzes with configurable passing score and attempt history.
+4. **Verifiable proof** — course complete hone par unique-ID certificate auto-issue, downloadable/shareable as PDF.
+5. **Self-service management** — client ko developer ki zaroorat nahi; poora content admin panel se manage hota hai.
+
+**Target users:** Students / learners (mobile app) and course administrators (in-app admin panel).
+
+---
+
+## 3. Tech Stack
+
+### Frontend (Mobile + Web)
+- **React Native 0.81** with **Expo SDK 54** (New Architecture enabled)
+- **Expo Router 6** — file-based routing with typed routes
+- **TypeScript 5.9** — strict, fully typed data models
+- **React 19**
+- **React Navigation 7** — bottom tabs, role-based navigators
+- **React Native Reanimated 4** + Gesture Handler — smooth transitions
+- **Lucide React Native** — icon system
+- **react-native-web** — same codebase se web build
+
+### Backend & Data
+- **Supabase (PostgreSQL)** — database, auth, storage, edge functions
+- **Row Level Security (RLS)** — 48 policies; role-based access enforced in the database, not just the UI
+- **Supabase Auth** — email/password, email verification, password reset via deep links
+- **Supabase Storage** — course thumbnails and lesson files/videos (separate buckets with access rules)
+- **Deno Edge Functions** — Stripe checkout session creation + webhook handler
+
+### Payments
+- **Stripe Checkout** — hosted checkout session, opened via in-app browser
+- **Stripe Webhooks** — `checkout.session.completed` / `checkout.session.expired` handled server-side; enrollment unlocks only after verified payment
+
+### Native Modules
+`expo-print` (PDF certificate generation) · `expo-sharing` (share/download certificate) · `expo-image-picker` (course thumbnails) · `expo-document-picker` (lesson file uploads) · `react-native-webview` (video + certificate preview) · `expo-web-browser` (Stripe checkout) · `expo-linking` (deep links / auth callback) · `async-storage` (theme + session persistence) · `expo-haptics`, `expo-blur`, `expo-linear-gradient`
+
+### Tooling & Delivery
+TypeScript strict typecheck · ESLint (expo lint) · Prettier · **EAS Build** for iOS/Android binaries · Supabase CLI migrations (7 versioned migrations)
+
+---
+
+## 4. Architecture Highlights
+
+- **Role-based routing** — Ek hi app, do experiences. Login ke baad user ka role (`student` / `admin`) decide karta hai kaunsa route group load hoga — `(student)` tabs ya `(admin)` tabs — with protected route guards.
+- **Global data cache layer** — Custom `DataCacheContext` app boot par courses, lessons, enrollments, quizzes, attempts, certificates aur payments prefetch karta hai. Result: screens instantly render hote hain, repeated network calls nahi hote, aur pull-to-refresh se cache sync hota hai.
+- **Auth context** — Session persistence, deep-link handling (password recovery, auth callback), aur auto profile creation via a Postgres trigger on signup.
+- **Security-first data model** — Har table par RLS. Student sirf apna data padh sakta hai; lessons/quizzes sirf published courses ke liye readable; write operations admin-only. Client-side checks sirf UX ke liye hain — asli enforcement database me hai.
+- **Server-verified payments** — Client khud ko paid course me enroll nahi kar sakta. Edge function checkout session banata hai, Stripe webhook payment confirm karta hai, phir enrollment create hota hai.
+- **Theming system** — Centralized light/dark palettes with shadow tokens, system-theme detection, aur user override (persisted).
+
+**Scale:** ~11,500 lines of TypeScript/SQL · 27 screens · 11 database tables · 48 RLS policies · 2 edge functions
+
+---
+
+## 5. Features — Student App
+
+- **Authentication** — Email/password signup & login, email verification, forgot-password + reset flow via deep link
+- **Course catalog** — Browse published courses, search, free/paid badges, pricing display
+- **Enrollment** — One-tap enrollment for free courses; Stripe Checkout for paid courses
+- **Course detail** — Lesson list with lock state, progress bar with completion percentage, attached quizzes
+- **Lessons** — Text and video lessons (WebView player), attached downloadable files, mark-as-complete progress tracking
+- **Quizzes** — Multiple-choice, auto-scored, configurable passing score (e.g. 70%), per-question answer storage, past attempt history and best score
+- **Certificates** — Auto-issued on course completion with a unique certificate ID; in-app preview, export as **PDF**, share/download via native share sheet
+- **Dashboard** — Live stats: enrolled courses, lessons completed, quizzes passed, certificates earned; continue-learning shortcuts
+- **Profile** — Account details, avatar, theme toggle, logout
+- **Dark mode** — Full light/dark theme, system-aware, user-togglable, persisted
+
+---
+
+## 6. Features — Admin Panel (in-app)
+
+- **Dashboard** — Total courses, users, quizzes and certificates issued at a glance
+- **Course management** — Create/edit/delete courses, upload thumbnail from gallery, set free or paid + price, publish/unpublish
+- **Lesson management** — Add text or video lessons, control order, attach documents/media via document picker, Supabase Storage upload
+- **Quiz builder** — Create quizzes per course, add questions, add multiple options, mark the correct answer, set passing score
+- **User management** — View all registered users with roles and enrollment info
+- **Payment tracking** — All Stripe transactions with user, course, amount, currency and status (pending / completed / failed / refunded)
+- **Access control** — Admin-only screens plus admin-only database policies
+
+---
+
+## 7. Data Model (11 tables)
+
+`profiles` (role-based user data) · `courses` · `enrollments` · `lessons` · `quizzes` · `quiz_questions` · `quiz_options` · `quiz_attempts` · `quiz_answers` · `lesson_progress` · `certificates` · `payments`
+
+Indexed foreign keys, `updated_at` triggers, cascading deletes, and an auth trigger that auto-creates a profile on signup.
+
+---
+
+## 8. Challenges Solved (case-study talking points)
+
+1. **Paid content that can't be bypassed** — Client-side "isEnrolled" checks are trivial to fake. Enrollment aur payment verification server-side hui (Stripe webhook + edge function), aur content access RLS policies me enforce hua — so even a modified client can't read paid lessons.
+2. **PDF certificates without a rendering backend** — Certificate ek styled HTML template se generate hota hai aur `expo-print` se on-device PDF me convert hota hai — no server rendering cost, and it shares straight through the native share sheet.
+3. **Perceived performance** — Har screen apni query chala rahi thi to navigation slow lag raha tha. Ek centralized cache context banaya jo boot par bulk-fetch karta hai aur mutations ke baad selectively refresh karta hai — screens ab instantly open hote hain.
+4. **One codebase, two products** — Student aur admin experiences alag route groups + ek shared design system se banaye, taake do apps maintain na karni paren.
+5. **Deep-link auth flows** — Password reset aur email verification links ko app ke andar handle karne ke liye custom scheme (`growsmart://`) + Expo Linking callback route.
+
+---
+
+## 9. Screenshots Plan
+
+Recommended order — website par mobile mockup frames me:
+
+1. **Splash / Login screen** — branding
+2. **Student dashboard** — stats cards *(hero shot — ye sabse pehle dikhao)*
+3. **Course catalog** — free + paid badges
+4. **Course detail** — progress bar + lesson list
+5. **Lesson screen** — video/text lesson
+6. **Quiz screen** — question with options
+7. **Quiz result** — passed screen with score
+8. **Certificate** — generated certificate with unique ID *(second hero shot)*
+9. **Admin dashboard** — stats
+10. **Admin course/quiz editor** — management UI
+11. **Dark mode** — same screen light vs dark, side-by-side *(strong visual)*
+
+**Layout suggestion:** Hero par 2–3 overlapping phone mockups (dashboard + certificate + course detail), phir features section ke saath inline screenshots, aur end me ek scrollable gallery.
+
+**Brand colors (frames / accents ke liye):**
+- Primary green `#1B5E20` · Light green `#2E7D32` · Accent blue `#0288D1`
+- Light background `#F5F5F5` · Dark background `#0F1712`
+
+---
+
+## 10. Ready-to-Use Copy — Short Versions
+
+**Card title:** GrowSmart — Mobile Learning & Certification Platform
+
+**One-liner:**
+Cross-platform LMS app with quizzes, payments and verifiable certificates
+
+**Short description (2–3 lines):**
+A cross-platform mobile learning platform built with React Native, Expo and Supabase. Students enroll in free or paid courses, complete lessons and auto-graded quizzes, track progress, and earn verifiable PDF certificates — while admins manage courses, quizzes, users and payments from a built-in panel.
+
+**Tech tags:**
+`React Native` `Expo` `TypeScript` `Supabase` `PostgreSQL` `Stripe` `Expo Router` `Row Level Security` `EAS Build` `iOS` `Android`
+
+**Feature tags:**
+`Role-Based Access` `Stripe Payments` `PDF Certificates` `Quiz Engine` `Progress Tracking` `Admin Panel` `Dark Mode`
+
+---
+
+## 11. Ready-to-Use Copy — Long Version (project detail page)
+
+> **GrowSmart** is a production-ready mobile learning platform built for a training authority that needed to move its courses off scattered links and into a real, trackable product.
+>
+> Built with React Native and Expo for iOS, Android and web from a single TypeScript codebase, the app gives students a structured path: browse published courses, enroll instantly in free ones or pay securely through Stripe Checkout for premium tracks, work through text and video lessons, and validate their understanding with auto-graded quizzes. Progress is tracked lesson by lesson, and once a course is completed the app issues a certificate with a unique verification ID that learners can preview, export as a PDF, and share straight from their phone.
+>
+> Behind the app sits Supabase and PostgreSQL, where access control is enforced at the database layer through 48 row-level security policies — paid lesson content simply isn't readable by users who haven't been enrolled through a verified payment. The Stripe integration runs through Deno edge functions: one creates the checkout session, another consumes Stripe webhooks and only then grants enrollment, so access can never be granted from the client.
+>
+> The same app also ships a full admin panel. Administrators create and publish courses, upload thumbnails and lesson files, build quizzes question by question, review every registered user, and monitor all payment transactions — no developer involvement needed to run the platform day to day.
+>
+> Additional work included a global data-cache layer that prefetches the user's courses, progress and certificates at launch for near-instant navigation, a full light/dark theming system with persisted user preference, deep-link handling for email verification and password recovery, and complete App Store and Play Store submission packages.
+
+---
+
+## 12. Metrics Block (stats strip ke liye)
+
+- **11,500+** lines of TypeScript & SQL
+- **27** app screens
+- **11** database tables, **48** security policies
+- **2** platforms from **1** codebase (+ web build)
+- **4** delivery milestones, shipped
+
+---
+
+## 13. Assets Checklist
+
+- [ ] App icon (PNG, 1024×1024)
+- [ ] Screenshots — list from section 9
+- [ ] Logo (transparent PNG / SVG)
+- [ ] App Store / Play Store live links (once published)
+- [ ] Demo video or screen recording (optional but strong)
+
+---
+
+*Prepared by: Mohammad Haseeb · ansarihaseeb615@gmail.com*

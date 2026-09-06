@@ -1,0 +1,206 @@
+# Steppy — Portfolio Project Brief
+
+> Notes for the portfolio developer: everything below is source material for the
+> case-study page. Use what fits the layout. Two ready-made blurbs are at the
+> bottom (short + long) if you just need copy. Screenshot slots are listed with
+> suggested captions.
+
+---
+
+## At a Glance
+
+| | |
+|---|---|
+| **Project** | Steppy — a step-tracking app where walking earns you virtual pets |
+| **Platform** | iOS + Android (React Native / Expo) |
+| **Role** | Full-stack mobile developer — app, database, backend functions, admin tooling, store releases |
+| **Type** | Client project |
+| **Status** | iOS submitted to the App Store; Android distributed through EAS |
+| **Timeline** | 2026 |
+
+---
+
+## Overview
+
+Steppy turns a daily step goal into a collectible game. The app reads step
+counts straight from the phone's health platform — HealthKit on iOS, Health
+Connect on Android — and rewards consistent walking with virtual pets. Hit your
+goal enough days in a row and a new animal arrives, delivered in a sack that the
+player opens.
+
+Each pet gets its own home, which the player decorates: furniture is dragged
+into place freely, layered front-to-back, and saved per pet. Pets can be dressed
+in hats, and rooms re-skinned with wallpapers and floors. Two in-app currencies
+are earned by walking and spent in the shop, alongside a monthly Seasonal Pack
+sold as a real in-app purchase.
+
+Around that core sits a full social and progression layer: friends and
+leaderboards, gift-sending, a daily trivia card, a streak calendar, a world map
+of walking progress, and push notifications.
+
+What makes the project unusual is how much of it is **content, not code**. Pets,
+hats, furniture, wallpapers, categories, seasonal packs and new-player gift
+bundles are all database-driven and managed from admin screens built into the
+app itself — so the client adds new content and tunes how every item sits on
+every animal without a developer or an app-store release.
+
+---
+
+## Key Features
+
+**Step tracking & progression**
+- Native health integration on both platforms (HealthKit / Health Connect)
+- Background step syncing, so progress updates without opening the app
+- Streak-based pet rewards with a calendar showing exactly which day earned which pet
+- Daily step goals, milestones, and two earned currencies
+
+**Pets & decoration**
+- Drag-and-drop room decorator with free positioning, depth layering and room boundaries
+- Per-pet saved layouts
+- Hats with per-species fitting, including flip poses and behind/in-front rendering
+- Wallpapers and floors, categorised furniture catalog
+
+**Social**
+- Friends, leaderboards, and progress comparison
+- Gift sending and a gift inbox
+- System-wide announcements that can carry a gift with them
+- Push notifications
+
+**Commerce**
+- Monthly Seasonal Packs sold as a real in-app purchase (RevenueCat)
+- Server-verified delivery — purchases are granted by a webhook using a
+  service-role key, so the app itself never has permission to grant paid content
+- In-app shops for furniture, designs and hats
+
+**Onboarding**
+- New players receive a starter pet paired with a curated furniture gift, presented as an animated housewarming celebration
+- A game-style guided tutorial with spotlight coach marks that teaches dragging, tapping and decorating step by step
+- Features unlock progressively over a player's first days
+
+**Built-in admin tooling** (8 screens, admin-only)
+- Visual hat calibration — position, scale and rotate a hat on a pet by touch, and clone a fitted hat's settings onto a new one across the whole roster
+- Pet and furniture scaling tools
+- Furniture category manager
+- Welcome-gift bundle builder
+- Broadcast notifications with attached gifts
+
+---
+
+## Technical Highlights
+
+Worth calling out on the case-study page — these are the parts that were
+genuinely hard:
+
+**Native health data on two very different platforms.** HealthKit and Health
+Connect expose steps in incompatible ways, with different permission models and
+different background behaviour. Both are wrapped behind one interface, with
+custom Expo config plugins to inject the native entitlements Expo doesn't ship.
+
+**A gesture-driven room decorator.** Furniture is positioned by touch with
+free-form dragging, depth ordering, and boundaries that hold on any screen
+size — while the pet itself is independently draggable in the same space.
+
+**Content pipeline instead of hardcoded assets.** Every cosmetic — pets, hats,
+furniture, wallpapers, categories, gift bundles — is a database row with an
+admin screen behind it. Adding a new animal or a seasonal collection is a
+content task, not a release.
+
+**Correctness enforced in the database, not just the app.** Access control runs
+on row-level security policies; anything a client must not be trusted with
+(granting paid packs, awarding currency) is a `SECURITY DEFINER` function. Rules
+like "a pet wears exactly one variant of a hat" are held by partial unique
+indexes and triggers, so no client can violate them.
+
+**Server-verified in-app purchases.** A Supabase Edge Function receives
+RevenueCat's webhook, verifies a shared secret, and grants the pack server-side
+with a service-role key. The client's own grant path is best-effort only and
+ownership is confirmed by polling — so a tampered client can't award itself paid
+content.
+
+**Full landscape support.** Every screen except the pet's room reflows for
+landscape, with safe-area handling for notches and gesture bars that move to the
+sides when the phone rotates.
+
+---
+
+## Tech Stack
+
+**Mobile**
+React Native 0.81 · Expo SDK 54 (New Architecture, Hermes) · TypeScript ·
+Expo Router (file-based routing, typed routes) · React Navigation
+
+**Native modules**
+HealthKit (`react-native-health`) · Health Connect
+(`react-native-health-connect`) · custom Expo config plugins ·
+Expo Background Fetch & Task Manager · Expo Notifications + Notifee ·
+Expo Sensors, Haptics, Screen Orientation
+
+**Animation & interaction**
+React Native Reanimated · Animated API · PanResponder · Gesture Handler ·
+Lottie · react-native-animatable
+
+**Backend**
+Supabase — PostgreSQL, Row Level Security, `SECURITY DEFINER` RPCs, Realtime
+subscriptions, Storage, Edge Functions (Deno) · ~50 SQL migrations
+
+**Payments**
+RevenueCat · App Store & Google Play in-app purchases · webhook-verified
+server-side fulfilment
+
+**Delivery**
+EAS Build & Submit · App Store Connect · Google Play Console
+
+**Scale**
+~14 user-facing screens · 8 in-app admin tools · 34 components · 12 custom hooks ·
+50 database migrations · 2 edge functions
+
+---
+
+## Screenshots
+
+Suggested set and captions — screenshots supplied separately.
+
+1. **Home / daily progress** — "Steps, streak and daily goal at a glance."
+2. **Pet home with furniture** — "Every pet gets a room the player decorates by hand." *(hero image — use this one large)*
+3. **My Pets collection** — "The reward for walking: a growing roster of animals."
+4. **Pet wearing a hat** — "Hats are fitted per species so they sit correctly on every animal."
+5. **Shop / Seasonal Pack banner** — "A monthly pack sold as a real in-app purchase."
+6. **Friends / leaderboard** — "Compare progress with friends."
+7. **Welcome gift celebration** — "New players are welcomed with a pet and a matching furniture set."
+8. **Guided tutorial coach mark** — "A game-style tutorial teaches the room decorator step by step."
+9. **Admin hat calibration tool** — "An in-app tool lets the client fit new hats onto every animal — no release needed." *(great for showing depth)*
+10. **Streak calendar** — "The calendar marks the exact day each pet was earned."
+
+---
+
+## Ready-Made Copy
+
+**Short (card / listing — ~40 words)**
+
+> Steppy is a cross-platform step-tracking app that turns a daily walking goal
+> into a collectible pet game. Built with React Native and Supabase, it reads
+> native health data, sells monthly content packs through verified in-app
+> purchases, and ships with its own admin tooling.
+
+**Long (case-study intro — ~110 words)**
+
+> Steppy rewards walking with virtual pets. Step counts come straight from
+> HealthKit and Health Connect, and consistent daily goals earn new animals —
+> each with a home the player decorates by dragging furniture into place, hanging
+> wallpaper, and fitting hats.
+>
+> Behind it sits a Postgres backend where every pet, hat and furniture piece is
+> a database row, managed through admin screens built into the app itself, so new
+> content ships without an app-store release. Monthly Seasonal Packs are sold as
+> real in-app purchases, fulfilled server-side by a webhook so paid content can
+> never be granted by a tampered client.
+>
+> Built with React Native, Expo, TypeScript and Supabase for iOS and Android.
+
+---
+
+## Notes
+
+- Client name can be included or left out — check before publishing.
+- App store link to be added once the iOS release is live.
+- No credentials, API keys or internal URLs are included in this document.

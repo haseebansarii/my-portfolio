@@ -10,11 +10,14 @@ interface SeoProps {
   path: string;
   /** Optional JSON-LD structured data object(s) injected into <head>. */
   jsonLd?: object | object[];
+  /** Site-root-relative image for social cards — falls back to the site OG image. */
+  image?: string;
 }
 
-export default function Seo({ title, description, path, jsonLd }: SeoProps) {
+export default function Seo({ title, description, path, jsonLd, image }: SeoProps) {
   const url = path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`;
   const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const ogImage = image ? `${SITE_URL}${image}` : OG_IMAGE;
 
   return (
     <Head>
@@ -27,12 +30,12 @@ export default function Seo({ title, description, path, jsonLd }: SeoProps) {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
-      <meta property="og:image" content={OG_IMAGE} />
+      <meta property="og:image" content={ogImage} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={OG_IMAGE} />
+      <meta name="twitter:image" content={ogImage} />
 
       {schemas.map((schema, i) => (
         <script key={i} type="application/ld+json">

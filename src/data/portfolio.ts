@@ -41,50 +41,9 @@ export const skills = [
   { name: 'Git / CI/CD', level: 88, category: 'tools', icon: GitBranch },
 ];
 
-export const projects = [
-  {
-    title: 'E-Commerce Platform',
-    description: 'Full-featured e-commerce application with real-time inventory management, payment processing, and admin dashboard built with MERN stack.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux'],
-    image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'web',
-  },
-  {
-    title: 'Fitness Tracker App',
-    description: 'Cross-platform mobile app for tracking workouts, nutrition, and health metrics with real-time data sync powered by Firebase.',
-    tech: ['React Native', 'Expo', 'Firebase', 'TypeScript'],
-    image: 'https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'mobile',
-  },
-  {
-    title: 'Project Management Tool',
-    description: 'Real-time collaborative project management application with Kanban boards, team chat, and analytics dashboard using Supabase.',
-    tech: ['Next.js', 'Supabase', 'Tailwind', 'TypeScript'],
-    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'web',
-  },
-  {
-    title: 'Social Media App',
-    description: 'Feature-rich social media application with real-time messaging, stories, and content sharing built with React Native and Supabase.',
-    tech: ['React Native', 'Supabase', 'Expo', 'Node.js'],
-    image: 'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'mobile',
-  },
-  {
-    title: 'Analytics Dashboard',
-    description: 'Enterprise-grade analytics dashboard with real-time data visualization, custom reports, and role-based access control.',
-    tech: ['React', 'D3.js', 'Node.js', 'PostgreSQL'],
-    image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'web',
-  },
-  {
-    title: 'Food Delivery App',
-    description: 'Complete food delivery ecosystem with customer app, restaurant dashboard, and driver tracking using React Native and Firebase.',
-    tech: ['React Native', 'Firebase', 'Maps API', 'Stripe'],
-    image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'mobile',
-  },
-];
+// Projects live in their own module — some carry full case-study content.
+export { projects, getProject, caseStudyProjects } from './projects';
+export type { Project, CaseStudy, GalleryShot } from './projects';
 
 export const services = [
   {

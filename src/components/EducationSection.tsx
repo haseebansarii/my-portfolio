@@ -6,8 +6,15 @@ import { education, certifications } from '../data/portfolio';
 
 export default function EducationSection() {
   return (
-    <section id="education" className="relative py-24 lg:py-32">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="education" className="relative py-24 lg:py-32 overflow-hidden">
+      {/* Color field behind the glass panels — gives the liquid glass
+          something to blur, saturate and refract */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="liquid-blob absolute top-[15%] left-[12%] w-80 h-80 rounded-full bg-sky-400/35 dark:bg-sky-500/[0.22] blur-[80px]" />
+        <div className="liquid-blob-2 absolute bottom-[10%] right-[10%] w-96 h-96 rounded-full bg-teal-400/35 dark:bg-teal-400/[0.18] blur-[90px]" />
+        <div className="liquid-blob absolute top-[45%] left-[45%] w-72 h-72 rounded-full bg-indigo-400/30 dark:bg-indigo-500/[0.16] blur-[75px]" />
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="// background"
           title="Education & Certifications"

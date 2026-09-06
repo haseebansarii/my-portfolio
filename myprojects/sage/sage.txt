@@ -1,0 +1,152 @@
+# Sage — Native Mobile App (iOS & Android)
+
+*Handoff notes for the portfolio site. Everything below is factual — trim,
+rewrite or reformat as needed for the site's voice.*
+
+---
+
+## One-liner
+
+A native iOS and Android app for **Sage**, an AI companion for reflection and
+personal wellbeing — rebuilt from an existing web product, sharing its backend.
+
+**Client:** Inner Sage (UK) — [innersage.co.uk](https://innersage.co.uk)
+**Role:** Sole mobile developer — full app, plus the backend work the mobile
+platform required
+**Status:** Built and in store submission
+
+---
+
+## Short description (for a project card)
+
+Sage is an AI companion people talk to — by typing or by voice — for reflection,
+perspective and gentle accountability. The web product already existed; this
+project brought it to iOS and Android as a genuinely native app rather than a
+wrapped website, reusing the existing backend so every account, conversation and
+subscription carried across untouched.
+
+---
+
+## Longer description (for a project page)
+
+The brief was to match the web product exactly — same screens, same behaviour,
+same design language — while being a real native app. Nothing was wrapped in a
+webview.
+
+The existing Supabase backend, database and AI services were reused as-is, so
+users move between web and mobile with one account and one subscription. Where
+mobile genuinely needed something the web did not, the backend was extended
+rather than duplicated: push notifications, for example, had to learn to reach
+phones alongside browsers without changing anything the web relied on.
+
+Delivered in milestones, each ending in a build the client installed and tested
+on their own device before the next began.
+
+---
+
+## What it does
+
+- **Conversational AI chat** — streaming replies, saved conversation history
+- **Voice-to-voice mode** — speak to Sage, hear her reply, hands free
+- **Dictation** — speak a single message into the composer to review before sending
+- **Journey events** — log what's coming up; Sage checks in before and after
+- **Daily wisdom & weekly insights** — with a browsable archive
+- **Shareable cards** — turn a piece of wisdom into a branded image to share
+- **Push notifications** across both platforms
+- **Subscriptions** — in-app purchase on mobile, alongside the web's existing billing
+- **Three themes and three text sizes**, matching the web product
+- **Admin dashboard** for the client
+
+---
+
+## Tech stack
+
+**App**
+React Native 0.86 · Expo SDK 57 · TypeScript · Expo Router (file-based, typed
+routes) · Zustand · Reanimated
+
+**Backend** *(existing, extended where mobile required it)*
+Supabase — Postgres, Auth, Row Level Security, Edge Functions (Deno)
+
+**Services**
+Claude API (conversation) · ElevenLabs (speech synthesis and transcription) ·
+RevenueCat with StoreKit and Google Play Billing (subscriptions) · Stripe
+(existing web billing) · Firebase Cloud Messaging & APNs (push)
+
+**Tooling**
+EAS Build · Gradle · Xcode toolchain
+
+---
+
+## Engineering highlights
+
+*Pick whichever suit the site — these are the parts that were genuinely
+non-obvious.*
+
+**Streaming AI replies on a platform that buffers them**
+React Native's `fetch` buffers a response rather than exposing a readable
+stream, which makes server-sent events arrive all at once. Using the WinterCG
+`fetch` shipped with Expo gave a real `ReadableStream`, so replies type out as
+they are generated, the same as on the web.
+
+**Voice conversation without a Web Audio API**
+The web detects when someone has stopped speaking using RMS amplitude from an
+`AnalyserNode`. React Native has no equivalent, so the same behaviour was
+rebuilt on the microphone's dBFS metering — converting the web's thresholds
+rather than re-inventing them, then calibrating to the room's noise floor at the
+start of every call so it works in a quiet bedroom and a noisy café alike.
+
+**A platform-specific audio strategy, because the platforms genuinely differ**
+Speech is synthesised sentence by sentence to keep latency low. On Android each
+player instance holds a hardware media decoder from a small pool, and creating
+one per sentence exhausted it — after which the app's audio was dead until the
+process was killed. On iOS the opposite was true: reusing one player introduced
+stuttering, because swapping its source is asynchronous there. The fix was to
+let each platform do what suits it, and to say so plainly in the code.
+
+**Encrypted sessions on a store with a size limit**
+iOS keychain storage caps individual values well below the size of a session
+token. Sessions are encrypted with AES-256 whose key lives in the secure store
+and whose ciphertext lives in ordinary storage — a fresh key per write, so the
+same key is never reused.
+
+**One subscription, two payment systems**
+Neither app store permits Stripe for a subscription used inside an app, but the
+web product runs on Stripe and its existing subscribers had to keep working.
+Both now write to the same record, and the backend grants access from that alone
+— so a subscription bought on the website unlocks the app, and one bought in the
+app unlocks the website, with neither system aware of the other.
+
+**Email links that open the app, not the browser**
+Verification and password-reset emails point at the website. Claiming those URLs
+through Universal Links and App Links means they open the app when it is
+installed, and the site when it is not — without changing a single email
+template.
+
+---
+
+## Screenshots
+
+*To be supplied separately. Suggested set:*
+
+1. Chat conversation
+2. Voice conversation in progress
+3. Journey events
+4. Daily wisdom archive
+5. Settings — themes
+6. Subscription screen
+
+---
+
+## Links
+
+- **Website:** https://innersage.co.uk
+- **App Store:** *pending release*
+- **Google Play:** *pending release*
+
+---
+
+## Suggested tags
+
+`React Native` · `Expo` · `TypeScript` · `Supabase` · `AI` · `Voice` ·
+`In-App Purchases` · `iOS` · `Android`

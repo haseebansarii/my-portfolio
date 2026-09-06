@@ -1,0 +1,265 @@
+# AMOR — AI Voice Companion App
+
+> **Handoff note for the portfolio developer:** This file contains all the copy, metadata and
+> technical details needed to add the **AMOR** project to my portfolio site. Screenshots will be
+> shared separately — placeholders and suggested captions are in the
+> [Screenshots](#9-screenshots) section. Feel free to trim any copy to fit the layout: the short
+> versions are for cards, the long version for the case-study page.
+
+---
+
+## 1. Quick Facts (project card / metadata)
+
+| Field | Value |
+|---|---|
+| **Project name** | AMOR |
+| **Category** | Mobile App — AI / Voice / Consumer |
+| **Tagline** | Talk to an AI companion that actually listens |
+| **Platforms** | iOS & Android (React Native / Expo) |
+| **My role** | Full-Stack Mobile Developer (solo — app, backend, database, payments) |
+| **Project type** | Client project (freelance, delivered in milestones) |
+| **Timeline** | April 2026 – July 2026 (~3.5 months) |
+| **Status** | Feature-complete, prepared for TestFlight / store submission |
+| **Live link** | *(not public — private client build)* |
+| **Repo link** | *(private)* |
+
+**Tags / chips to display:**
+`React Native` · `Expo` · `TypeScript` · `Supabase` · `OpenAI` · `Stripe` · `PostgreSQL` · `Edge Functions` · `Voice AI`
+
+---
+
+## 2. One-Liner (for the card)
+
+> A React Native app where you can text **or actually call** an AI companion — real-time voice
+> conversation with automatic speech detection, seven distinct personalities, and a Stripe-powered
+> wallet that bills per second of talk time.
+
+---
+
+## 3. Short Description (2–3 lines, for the grid / hover state)
+
+> AMOR is a cross-platform AI companion app built with React Native and Expo. Users chat by text or
+> start a hands-free voice call with one of seven AI personalities — each with its own voice,
+> character and memory. Backed by Supabase (Postgres + Edge Functions) with Stripe wallet billing.
+
+---
+
+## 4. Full Description (case-study page)
+
+**AMOR** is a mobile AI companion app for iOS and Android. The idea is simple: instead of typing at
+a chatbot, you can **call** it — tap once and have a natural, hands-free conversation, the way you'd
+talk to a friend on the phone.
+
+I built the product end to end: the React Native front end, the Supabase backend and database
+schema, the server-side voice pipeline, the authentication and guest system, and the Stripe
+payment and wallet layer.
+
+**What makes it interesting technically.**
+The hard part of a voice app isn't the AI — it's making the conversation *feel* natural. Most voice
+apps make you hold a button while you speak. AMOR doesn't. I implemented a custom **Voice Activity
+Detection (VAD)** system that continuously reads the microphone's audio level and works out on its
+own when you've started speaking and when you've finished. It waits out short pauses, rejects
+background noise, and ends the recording precisely when you stop — so the call loop is completely
+hands-free: *you speak → it detects silence → it thinks → it replies → it listens again.*
+
+**Cost and security.**
+API keys can't live inside a mobile app, and voice is expensive to run. So the entire AI pipeline —
+speech-to-text, LLM, text-to-speech — runs server-side inside a Supabase Edge Function. The app only
+ever sends audio and receives audio; no provider key ever touches the device. The same principle
+applies to money: Stripe's secret key lives only in an edge function, wallet balances are computed
+in the database through `SECURITY DEFINER` functions, and top-ups are credited only after the
+payment is re-verified against Stripe — with idempotency, so a replayed request can never
+double-credit an account.
+
+**The product side.**
+Users can try the app instantly as a guest with small daily limits, then create an account — at
+which point all their guest conversations and call history are **migrated into the new account** by
+a single database function, so nothing is lost. Registered users get a wallet: chat messages cost
+1¢ each, voice calls bill at $1.00/hour charged **per second actually used**, topped up with real
+Stripe payments.
+
+---
+
+## 5. Key Features
+
+**Conversation**
+- Text chat and hands-free voice calling with the same AI companion
+- Seamless switching between chat mode and call mode mid-conversation
+- Guided "first call" onboarding script that introduces the companion and learns the user's name
+- Full call history with replayable transcripts
+
+**Voice engine**
+- Custom **Voice Activity Detection** — no push-to-talk; the app detects speech start and end from
+  live audio metering, with tunable dB threshold, silence duration and minimum-speech guards
+- Server-side pipeline: **Whisper** speech-to-text → **GPT-4o-mini** → **OpenAI TTS**
+- Audio playback with a per-companion voice
+
+**AI personalities**
+- **7 distinct companions** (Luna, Aria, Alex, Marcus, Sienna, Theo, Iris) — each with its own
+  system prompt, personality profile, TTS voice, avatar and accent color that re-themes the UI
+- Per-companion memory: each companion builds its own long-term context about the user
+
+**Accounts & data**
+- Guest mode with device-based sessions — usable in seconds, no signup wall
+- Email/password auth via Supabase, with real-time password-strength validation
+- Forgot-password and reset flows over an `amor://auth` deep link
+- Automatic guest → registered-user data migration (conversations, messages, call history)
+- Row Level Security on every table
+
+**Payments**
+- Stripe wallet with $4.99 / $9.99 / $19.99 top-up packages
+- Per-second billing for voice calls, per-message billing for chat
+- Server-verified, idempotent crediting — the Stripe secret key never leaves the backend
+- Pricing driven from a `pricing_config` table, so rates change without an app update
+
+**Polish**
+- Splash → onboarding carousel → auth gate → main app flow
+- Three-tab layout (Chat · Calls · Account) with badges and active states
+- Offline-tolerant local persistence via AsyncStorage
+- Branded transactional email templates, plus Privacy Policy, Terms and Help screens
+- Fully typed in TypeScript throughout
+
+---
+
+## 6. Tech Stack
+
+**Mobile**
+- React Native 0.81 · React 19 · Expo SDK 54 (New Architecture enabled)
+- TypeScript
+- Expo AV (recording + playback), Expo Speech, Expo Blur, Expo Linear Gradient, Expo Linking
+- React Native Reanimated, React Navigation, Safe Area Context
+- AsyncStorage for local persistence
+
+**Backend**
+- Supabase — PostgreSQL, Auth, Row Level Security
+- Supabase Edge Functions (Deno / TypeScript) — `voice-chat` and `stripe-payments`
+- 20+ table schema with `SECURITY DEFINER` RPCs and SQL migrations
+
+**AI**
+- OpenAI Whisper (`whisper-1`) — speech to text
+- OpenAI GPT-4o-mini — conversation
+- OpenAI TTS — 10 available voices mapped to companion personas
+
+**Payments**
+- Stripe (PaymentIntents) · `@stripe/stripe-react-native` · Google Pay enabled
+
+**Tooling**
+- EAS Build, Expo Dev Client, `react-native-dotenv`
+
+---
+
+## 7. Architecture
+
+If you want a visual on the page, this is the flow to illustrate:
+
+```
+┌─────────────────────────────┐
+│   React Native App (Expo)   │
+│  ┌───────────────────────┐  │
+│  │ VAD Recorder          │  │  ← detects speech start / silence
+│  │ (live audio metering) │  │
+│  └──────────┬────────────┘  │
+└─────────────┼───────────────┘
+              │  audio over HTTPS
+              ▼
+┌─────────────────────────────────────────────┐
+│   Supabase Edge Function: voice-chat        │
+│   Whisper STT → GPT-4o-mini → OpenAI TTS    │  ← API keys stay server-side
+└─────────────┬───────────────────────────────┘
+              │  transcript + reply + audio
+              ▼
+┌─────────────────────────────────────────────┐
+│   PostgreSQL (Supabase)                     │
+│   profiles · conversations · messages       │
+│   call_sessions · wallets · transactions    │
+│   ai_memory · pricing_config   [RLS on all] │
+└─────────────────────────────────────────────┘
+              ▲
+              │  verified, idempotent credit
+┌─────────────┴───────────────────────────────┐
+│   Edge Function: stripe-payments  ←→ Stripe │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+## 8. Challenges & Solutions
+
+**Making voice feel like a real call, not a walkie-talkie.**
+Fixed-duration recording either cut people off mid-sentence or left awkward dead air. I wrote a VAD
+service that samples the microphone's metering level every 100 ms, requires roughly half a second of
+sustained speech before it counts as "the user is talking," then ends the turn after 1.5 s of
+silence. The result is a fully hands-free conversation loop with thresholds that can be tuned for
+noisy environments.
+
+**Running a paid AI pipeline from an app that can't hold secrets.**
+Every AI and payment call moved into Supabase Edge Functions. The client sends audio and gets audio
+back; the OpenAI and Stripe keys exist only as server secrets. This also made pricing changes and
+model swaps possible without shipping a new app build.
+
+**Letting people try the app without an account, without losing their history.**
+Guests get a device-scoped session and small daily limits. The moment they sign up, a single
+`migrate_guest_to_user()` database function re-parents every conversation, message and call record
+to the new user ID — designed to be safe to run more than once.
+
+**Billing accurately for something measured in seconds.**
+Wallet balance and every deduction live in Postgres behind `SECURITY DEFINER` RPCs, so the client
+can never write its own balance. Calls bill per second at an hourly rate read from a config table,
+and top-ups are credited only after the PaymentIntent is re-fetched from Stripe and verified for
+status, amount and owner — keyed by payment ID, so replays are harmless.
+
+---
+
+## 9. Screenshots
+
+I'll send these as separate image files. Suggested order and captions:
+
+| # | Screen | Suggested caption |
+|---|---|---|
+| 1 | Onboarding / Splash | *"Onboarding — first impression and value prop"* |
+| 2 | Companion selection | *"Seven AI personalities, each with its own voice and character"* |
+| 3 | Chat screen | *"Text conversation with live usage indicators"* |
+| 4 | Active voice call | *"Hands-free voice call with automatic speech detection"* |
+| 5 | Companion profile modal | *"Personality profile — traits, tone and bonding style"* |
+| 6 | Call history | *"Every call saved with duration and message count"* |
+| 7 | Call transcript | *"Full transcript of any past conversation"* |
+| 8 | Pricing / wallet modal | *"Stripe-powered wallet with per-second call billing"* |
+| 9 | Account screen | *"Account, balance and settings"* |
+
+**Layout suggestion:** a phone-mockup carousel or a 3-column grid works best — these are all
+portrait mobile screens (9:19.5). A short screen recording of the voice call would make the
+strongest hero asset; I can record one on request.
+
+---
+
+## 10. Scope / Stats (if the site has a stats strip)
+
+- **~40** TypeScript source files across screens, components and services
+- **20+** PostgreSQL tables with Row Level Security
+- **2** Supabase Edge Functions (voice pipeline + payments)
+- **7** AI companion personalities
+- **8** delivered milestones, from core chat through payments and store prep
+
+---
+
+## 11. SEO / Meta
+
+- **Page title:** AMOR — AI Voice Companion App | React Native + Supabase Case Study
+- **Meta description:** A cross-platform AI companion app built with React Native, Expo, Supabase
+  and OpenAI. Hands-free voice calls with custom voice activity detection, seven AI personalities,
+  and a Stripe-powered wallet that bills per second of talk time.
+- **Keywords:** react native app, expo, ai voice app, openai whisper, gpt-4o, supabase, stripe
+  payments, mobile app developer, typescript
+
+---
+
+## 12. Notes for you
+
+- The app is a **private client build**, so please don't link to a repo or store listing — just
+  "Private client project", or no link at all.
+- Please **don't display any API keys, the Supabase project URL, the bundle identifier or the EAS
+  project ID** anywhere on the page.
+- If you need shorter copy for a specific slot, cut from Section 4 rather than Section 5 — the
+  feature list is the part people actually scan.
+- Ping me if you want the architecture diagram as a proper SVG/PNG instead of ASCII, or a demo
+  video for the hero.

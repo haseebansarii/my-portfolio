@@ -1,0 +1,243 @@
+# ScaleMyPlate — Portfolio Project Brief
+
+> **For:** Portfolio site developer
+> **From:** Mohammad Haseeb
+> **Purpose:** Everything needed to add this project to the portfolio site. Screenshots will be
+> supplied separately — placeholders are marked below with `[SCREENSHOT: ...]`.
+> Anything wrapped in `{{ }}` is a value I still need to confirm/fill in.
+
+---
+
+## 1. Quick Facts (for the project card / meta block)
+
+| Field | Value |
+|---|---|
+| **Project name** | ScaleMyPlate |
+| **Type** | Cross-platform mobile app (iOS + Android) + cloud backend for an IoT smart kitchen scale |
+| **Category / tags** | Mobile App, React Native, IoT, Health & Fitness, Nutrition, Supabase, TypeScript |
+| **Role** | {{ e.g. Full-Stack / Mobile Developer — solo }} |
+| **Timeline** | Jan 2026 – May 2026 (active development) |
+| **Status** | {{ Live on stores / In beta / Private build }} |
+| **App version** | 1.1.0 |
+| **Platforms** | iOS, Android (Expo / React Native, New Architecture enabled) |
+| **Repo** | {{ public GitHub link, or "Private" }} |
+| **Live link** | {{ App Store / Play Store / TestFlight link, or "Available on request" }} |
+
+**Primary brand colour:** `#1F6148` (deep green) — dark-mode accent `#3BB286`
+**Light background:** `#F5F6F7` · **Dark background:** `#121212`
+*(Feel free to use these for the project card accent so it matches the app screenshots.)*
+
+---
+
+## 2. One-liners (pick whichever fits the layout)
+
+**Short (card subtitle, ~90 chars):**
+> A nutrition-tracking mobile app that pairs with a smart kitchen scale to log meals automatically.
+
+**Medium (2 lines):**
+> ScaleMyPlate is a React Native app that turns a smart kitchen scale into a full nutrition
+> tracker — weigh your food, and calories and macros are logged, summarised and streak-tracked
+> for you, on the device and in the app.
+
+**Tagline:**
+> Weigh it. Log it. Done.
+
+---
+
+## 3. Project Description (long form — for the case-study page)
+
+ScaleMyPlate is a cross-platform mobile app built with React Native (Expo) and a Supabase
+backend that acts as the companion app for an IoT smart kitchen scale.
+
+Most calorie-tracking apps make the user do the hard part: guessing portion sizes. ScaleMyPlate
+removes that step. The physical scale weighs the food, identifies it (via a USDA food database
+lookup or a product barcode), and pushes the meal straight into the cloud — where the mobile app
+picks it up. The user gets accurate calories, protein, carbs and fat without typing a thing,
+plus the option to log food manually when the scale is not around.
+
+The app covers the full product surface: email/password and social authentication, a guided
+onboarding flow, a QR-code pairing flow to link a phone to a physical scale, a daily nutrition
+dashboard, manual food entry, a full meal history with per-food editing, goal setting with
+weekly analytics, streak tracking, light/dark theming, and account management including a
+complete cascading account deletion.
+
+On the backend, I designed the PostgreSQL schema and built **14 Supabase Edge Functions** that
+serve as a documented REST API — consumed both by the mobile app and directly by the IoT device
+firmware. Postgres triggers keep meal totals, daily summaries and user streaks consistent
+automatically, so nutrition maths never has to be duplicated between the device and the app.
+Every user-owned table is protected by Row Level Security policies.
+
+---
+
+## 4. Key Features (bullet list for the site)
+
+- **Smart-scale integration** — the IoT scale submits weighed meals straight to the cloud API; the app reflects them on next load.
+- **QR-code device pairing** — scan a QR code shown on the scale to link a phone to a device (up to 2 user profiles per scale).
+- **Barcode scanning** — look up packaged products by barcode through the OpenFoodFacts database.
+- **USDA food search** — full-text search over the USDA food database, ranked by popularity so common foods surface first.
+- **Manual food logging** — add any food with serving size, actual consumed weight and macros; nutrition auto-scales to the weight eaten.
+- **Daily dashboard** — calories-remaining ring, macro breakdown, last meal, quick actions.
+- **Meal history** — browse any past date, expand meals, edit or delete individual food items with totals recalculated automatically.
+- **Goals and analytics** — set calorie/protein/carb/fat targets and view weekly breakdowns (this week / last week / 2 weeks ago) with totals and daily averages.
+- **Streak tracking** — current and longest logging streaks, maintained by database triggers.
+- **Full theming** — hand-built light and dark themes with a shared colour system and custom SVG tab icons.
+- **Account management** — password reset flow, personal details, notification preferences, and full account deletion.
+
+---
+
+## 5. Tech Stack
+
+**Mobile**
+- React Native `0.81` + React `19` (New Architecture)
+- Expo SDK `54` with Expo Router (typed, file-based routing)
+- TypeScript (strict)
+- React Native Reanimated · Gesture Handler · SVG · Safe Area Context
+- expo-camera (QR + barcode scanning), expo-auth-session + expo-web-browser (OAuth),
+  expo-image-picker, expo-haptics, expo-linear-gradient, expo-blur, AsyncStorage
+- EAS Build / EAS Submit for distribution
+
+**Backend**
+- Supabase — PostgreSQL, Auth, Row Level Security
+- Supabase Edge Functions (Deno / TypeScript) — 14 REST endpoints
+- PostgreSQL triggers and functions for derived data (meal totals, daily summaries, streaks)
+- GIN full-text index for food search
+- OpenFoodFacts + USDA FoodData Central as nutrition data sources
+
+**Tooling**
+- ESLint (Expo config), Git, Expo Dev Client
+
+---
+
+## 6. Architecture (one paragraph + optional diagram)
+
+Three clients share one backend: the **mobile app**, the **IoT scale**, and the **Supabase
+PostgreSQL database** that both talk to.
+
+```
++----------------+          +----------------------+          +----------------+
+|  IoT Smart     |  REST    |  Supabase Edge       |   SQL    |  PostgreSQL    |
+|  Scale         | -------> |  Functions (Deno)    | -------> |  + RLS         |
+|  (firmware)    |          |  14 endpoints        |          |  + triggers    |
++----------------+          +----------------------+          +-------+--------+
+                                                                      |
++----------------+                Supabase JS client                  |
+|  React Native  | <--------------------------------------------------+
+|  App (Expo)    |        auth - reads - writes
++----------------+
+
+        OpenFoodFacts API  +
+        USDA FoodData      +--> cached in PostgreSQL
+```
+
+- The **app** authenticates with Supabase Auth and reads/writes user data through a typed
+  data-access layer, with RLS enforcing ownership at the database level.
+- The **scale** has no user session, so it uses the Edge Function API (`/iot-meal`,
+  `/profile-data`, `/device-register`, and so on) with a service key.
+- **Postgres triggers** recompute meal totals, daily summaries and streaks whenever a food item
+  changes — so the app, the device and the API can never drift out of sync.
+
+*(If the site supports diagrams, the block above can be redrawn as a clean SVG. If not, just use
+the paragraph.)*
+
+---
+
+## 7. Database Design (optional "under the hood" section)
+
+9 core tables, all with Row Level Security:
+
+`profiles` · `user_goals` · `user_streaks` · `devices` · `device_users` ·
+`meals` · `food_items` · `daily_summaries` · `usda_foods`
+
+Highlights worth calling out:
+- Auto-provisioning triggers create a profile, default goals and a streak row on signup.
+- A trigger chain recalculates meal totals, then the daily summary, then the streak on every
+  food-item write.
+- `device_users` enforces a maximum of 2 profiles per physical scale with automatic slot assignment.
+- Food search uses a GIN full-text index plus a click-popularity counter for result ranking.
+
+---
+
+## 8. API Surface (optional — shows backend depth)
+
+14 documented REST endpoints grouped into four areas:
+
+| Group | Endpoints |
+|---|---|
+| **Food database** | `/barcode-lookup`, `/food-search`, `/food-click` |
+| **IoT meals** | `/iot-meal` |
+| **Profile** | `/profile-data`, `/food-item-edit`, `/food-item-delete`, `/goals-update`, `/device-user-create`, `/device-user-delete` |
+| **Device and account** | `/device-register`, `/device-update`, `/link-account`, `/account-delete` |
+
+Each one is fully documented with request/response examples and error codes.
+*(I can share the API documentation as a downloadable PDF if we want a "View API docs" button.)*
+
+---
+
+## 9. Challenges / What I am proud of (for the case-study narrative)
+
+Pick one or two of these if the layout has a "Challenges" or "Highlights" section:
+
+1. **Keeping two clients in sync.** The scale and the app can both modify the same meal. Instead
+   of duplicating nutrition maths in firmware and in the app, I pushed all derived values
+   (meal totals, daily summaries, streaks) into Postgres triggers — one source of truth, and
+   both clients stay correct for free.
+2. **Designing an API for hardware.** The IoT device has no user session and limited memory, so
+   `/profile-data` returns goals, streak, history and the current day's meals in a single round
+   trip rather than forcing the firmware to make five calls.
+3. **Portion accuracy.** Nutrition is stored per reference serving and scaled by the actual
+   weighed amount, so a 150g portion of a food listed per 100g is computed exactly — the whole
+   reason the scale exists.
+4. **A hand-built design system.** No UI kit — custom SVG tab icons, a shared colour token
+   system, and a full light/dark theme implemented across roughly 9,000 lines of screen code.
+
+---
+
+## 10. Screenshots
+
+I will send the image files separately. Suggested order and captions:
+
+1. `[SCREENSHOT: onboarding]` — **Welcome and onboarding** — "Guided onboarding with scale pairing."
+2. `[SCREENSHOT: login]` — **Authentication** — "Email, Google and Facebook sign-in."
+3. `[SCREENSHOT: dashboard]` — **Daily overview** — "Calories left, macros, and last meal at a glance."
+4. `[SCREENSHOT: add-food]` — **Add food** — "Log any food by serving size and actual weight consumed."
+5. `[SCREENSHOT: qr-pairing]` — **Scale pairing** — "Scan the QR code on the scale to link your profile."
+6. `[SCREENSHOT: history]` — **Meal history** — "Browse any date, edit or delete individual foods."
+7. `[SCREENSHOT: goals]` — **Goals and analytics** — "Weekly calorie and macro breakdowns against your targets."
+8. `[SCREENSHOT: settings-dark]` — **Dark mode** — "Full light and dark theming throughout."
+
+**Presentation notes:**
+- These are portrait phone screenshots — a phone-frame mockup or a horizontal scroll strip works
+  better than a 16:9 grid.
+- Include at least one dark-mode shot next to a light one to show the theming.
+- Hero image suggestion: the **daily overview** screen (`dashboard`) — it is the most visually
+  distinctive.
+
+---
+
+## 11. Copy-paste ready snippet (if you just want the short version)
+
+```
+ScaleMyPlate — Smart Nutrition Tracking App
+React Native (Expo) · TypeScript · Supabase · PostgreSQL · IoT
+
+A cross-platform mobile app that pairs with a smart kitchen scale to log meals
+automatically. The scale weighs and identifies food; the app turns it into calories,
+macros, daily summaries and streaks. Includes barcode scanning, USDA food search,
+QR device pairing, goal tracking with weekly analytics, and full light/dark theming.
+
+Backend: 14 Supabase Edge Functions serving both the app and the device firmware,
+a 9-table PostgreSQL schema with Row Level Security, and trigger-driven aggregation
+so nutrition data can never drift out of sync between clients.
+```
+
+---
+
+## 12. Notes for the developer
+
+- **Do not publish** the Supabase project URL, the anon key, or the EAS project ID anywhere on
+  the site — if any appear in a screenshot, please blur them.
+- Screenshots may show a **User ID** on the settings screen — blur that too.
+- If you need a favicon/logo, the app icon lives at `assets/images/Mobileicon.jpg`; I will send a
+  clean PNG export.
+- Any section marked *optional* can be dropped if the layout is tight — sections 1 to 5 and 10
+  are the essentials.

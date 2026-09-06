@@ -116,6 +116,15 @@
     </style>
   </head>
   <body>
+    <!-- Liquid Glass lens: referenced by backdrop-filter: url(#liquid-lens) -->
+    <svg class="liquid-defs" aria-hidden="true" focusable="false">
+      <filter id="liquid-lens" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.004 0.009" numOctaves="2" seed="7" result="noise" />
+        <feGaussianBlur in="noise" stdDeviation="4" result="soft" />
+        <feDisplacementMap in="SourceGraphic" in2="soft" scale="32" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
+
     <div id="initial-loader">
       <div class="boot-lines" aria-hidden="true">
         <div class="line"><span class="p">&gt;</span> initializing haseeb_os v1.0 <span class="ok">✓</span></div>

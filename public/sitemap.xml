@@ -21,6 +21,46 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.mhaseeb.dev/projects/steppy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mhaseeb.dev/projects/scalemyplate</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mhaseeb.dev/projects/sage</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mhaseeb.dev/projects/amor</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mhaseeb.dev/projects/growsmart</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mhaseeb.dev/projects/athletica-roll-call</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mhaseeb.dev/projects/heitmann-baleares</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mhaseeb.dev/projects/stronghold-asset-management</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.mhaseeb.dev/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

@@ -1,16 +1,70 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ExternalLink, ArrowRight, ArrowUpRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import SectionHeading from './SectionHeading';
 import TiltCard from './TiltCard';
 import { projects, personalInfo } from '../data/portfolio';
+import type { Project } from '../data/portfolio';
 
 const filters = [
   { id: 'all', label: 'All Projects' },
   { id: 'web', label: 'Web Apps' },
   { id: 'mobile', label: 'Mobile Apps' },
 ];
+
+function ProjectCard({ project }: { project: Project }) {
+  const hasCaseStudy = Boolean(project.caseStudy);
+
+  return (
+    <TiltCard className="group relative h-full rounded-2xl overflow-hidden glass-card glass-card-hover glass-shine transition-all duration-500">
+      <div className="relative h-48 overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          className="media-soften-light w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#f0f4f8] via-[#f0f4f8]/40 to-transparent dark:from-[#080c12] dark:via-[#080c12]/40" />
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="w-10 h-10 rounded-xl glass-badge flex items-center justify-center text-slate-900 dark:text-white">
+            {hasCaseStudy ? <ArrowUpRight className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
+          </div>
+        </div>
+        <div className="absolute top-4 left-4 flex gap-2">
+          <span className="px-3 py-1 text-xs font-mono rounded-full glass-badge text-slate-700 dark:text-gray-300 capitalize">
+            {project.category}
+          </span>
+          {hasCaseStudy && (
+            <span className="px-3 py-1 text-xs font-mono rounded-full glass-badge text-sky-700 dark:text-sky-300">
+              case study
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="p-5">
+        <h3 className="text-slate-900 dark:text-white font-semibold text-lg mb-2 group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-slate-400 dark:text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {project.tech.map((t) => (
+            <span
+              key={t}
+              className="px-2.5 py-1 text-xs font-mono rounded-lg glass-subtle text-slate-500 dark:text-gray-400"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </TiltCard>
+  );
+}
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -62,51 +116,23 @@ export default function ProjectsSection() {
           >
             {filtered.map((project, index) => (
               <motion.div
-                key={project.title}
+                key={project.slug}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -32 : 32, y: 16 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: (index % 3) * 0.08, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
-                <TiltCard className="group relative h-full rounded-2xl overflow-hidden glass-card glass-card-hover glass-shine transition-all duration-500">
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="media-soften-light w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#f0f4f8] via-[#f0f4f8]/40 to-transparent dark:from-[#080c12] dark:via-[#080c12]/40" />
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="w-10 h-10 rounded-xl glass-badge flex items-center justify-center text-slate-900 dark:text-white">
-                      <ExternalLink className="w-4 h-4" />
-                    </div>
-                  </div>
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 text-xs font-mono rounded-full glass-badge text-slate-700 dark:text-gray-300 capitalize">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-5">
-                  <h3 className="text-slate-900 dark:text-white font-semibold text-lg mb-2 group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-slate-400 dark:text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 text-xs font-mono rounded-lg glass-subtle text-slate-500 dark:text-gray-400"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                </TiltCard>
+                {project.caseStudy ? (
+                  <Link
+                    to={`/projects/${project.slug}`}
+                    className="block h-full"
+                    aria-label={`Read the ${project.title} case study`}
+                  >
+                    <ProjectCard project={project} />
+                  </Link>
+                ) : (
+                  <ProjectCard project={project} />
+                )}
               </motion.div>
             ))}
           </motion.div>

@@ -1,0 +1,42 @@
+# Stronghold Asset Management — Project Brief
+
+## Overview
+
+A marketing website built for **Stronghold Asset Management GmbH**, a Hamburg-based real estate asset manager overseeing €150M in assets and 5,000+ units across 59 German locations, serving investors across Germany, Singapore, London, and Luxembourg.
+
+The site covers the company's core business lines — portfolio management, asset management, and property management/renovation — across 9 pages, and includes a full case-study gallery for their in-house property renovation service.
+
+**My role:** end-to-end build and iterative client revisions — architecture, all pages/components, copywriting adjustments, image sourcing/processing, and an ongoing feedback loop directly with the client.
+
+## Tech Stack
+
+- **React 18** + **TypeScript**, built with **Vite**
+- **Tailwind CSS 3** — theming via CSS custom properties (see "Design system" below)
+- **Framer Motion** — scroll reveals, hover interactions, animated counters, an orbiting SVG diagram
+- **React Router 7** — client-side routing across 9 pages
+
+## Pages
+
+Home · About Us · Services (+ dynamic per-service detail pages) · Projects · Why Us · Packages · Contact · Imprint
+
+## Notable Features
+
+- **Property Renovation case studies** — a room-by-room Before/After gallery (drag-to-compare slider, lightbox viewer) plus a separate "Completed Projects" section presenting full renovations as narrative case studies (lead photo + supporting grid), sourced and cropped from the client's own project photography
+- **Interactive service diagram** — an animated orbiting SVG on the homepage illustrating the three core business areas
+- **Animated stats, scroll-triggered counters, and a milestone timeline** with an SVG path that draws in on scroll
+- **Fully responsive**, with careful attention to internationalization — text sizing/wrapping was hardened against machine-translated page content (e.g. German compound words) breaking fixed-width layouts
+- **Dynamic contact form and package comparison** (Basic / Standard / Premium tiers)
+
+## Design System
+
+Built a token-based theming architecture using CSS custom properties (colors stored as RGB channels, e.g. `--c-navy-900: 11 31 77`) rather than hardcoded hex values throughout components. This let the client compare **four full colour palettes live on the site** (via a temporary in-app switcher) before selecting a final direction — a request driven by client feedback that the original palette used too many bright/light sections for a premium financial-services brand. Once approved, the switcher and unused palettes were removed, leaving one clean, swappable token file as the single source of truth for all brand colours.
+
+## Process
+
+This was an **iterative, client-driven build**: the client reviewed live changes and sent rounds of written feedback (copy edits, photo replacements, section reordering, layout tweaks), which were implemented incrementally over ~2 months and confirmed back to them after each round. Image assets (team photos, renovation project photography) were also processed — cropped, aligned, and compressed — to fit the design consistently.
+
+## Suggested Portfolio Presentation
+
+- **Category:** Corporate / Real Estate / Financial Services website
+- **Highlight shots:** Homepage hero + orbiting services diagram, the Before/After renovation gallery, the Packages comparison section
+- **Tagline idea:** *"A premium, multi-page marketing site for a German real estate asset manager — built with React, TypeScript, and a fully token-based design system supporting live theme switching."*

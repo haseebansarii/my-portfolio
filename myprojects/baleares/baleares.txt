@@ -1,0 +1,180 @@
+# Heitmann Baleares — Project Brief for Portfolio
+
+> Hand-off notes for the portfolio site. Everything below is factual and can be
+> trimmed or reworded to fit the layout. Screenshots will be supplied separately.
+
+---
+
+## Quick facts
+
+| Field | Value |
+|---|---|
+| **Project name** | Heitmann Baleares |
+| **Client** | Heitmann Baleares S.L. — German construction company on Ibiza, part of the Heitmann Group (Hamburg) |
+| **Industry** | Construction / high-end residential building |
+| **Type** | Corporate marketing website (multilingual) |
+| **Role** | Full design & development (solo) |
+| **Year** | 2026 |
+| **Duration** | ~2 months |
+| **Live URL** | https://heitmann-baleares.es |
+| **Status** | Live |
+
+---
+
+## Short description (for a card / preview)
+
+> A trilingual marketing site for a German construction company operating on
+> Ibiza — built with Next.js, with URL-based multilingual routing, GDPR-compliant
+> consent management, and a motion-led editorial design.
+
+**One-liner (very short version):**
+
+> Trilingual Next.js site for a German construction company on Ibiza — 30 static
+> pages, full SEO and GDPR setup.
+
+---
+
+## Overview (for the project detail page)
+
+Heitmann Baleares builds and renovates high-end properties on Ibiza, bringing
+German engineering standards to the Balearic Islands. They needed a website that
+communicated that positioning to three separate audiences — German property
+owners, Spanish locals, and international clients — while meeting the strict
+privacy and legal requirements that apply to a German-owned company operating in
+the EU.
+
+The site was designed and built from scratch: an editorial, motion-led interface
+in a warm ivory and orange palette, with an arch motif running through the visual
+language as a nod to Mediterranean architecture.
+
+Midway through the project the structure was reworked from a single-page site
+into a fully routed multilingual architecture, so each section could rank
+independently in search — 30 statically generated pages across three languages,
+with localised URLs and complete hreflang coverage.
+
+---
+
+## Tech stack
+
+- **Next.js 16** (App Router, static generation)
+- **React 19**
+- **Framer Motion** — scroll reveals, page transitions, micro-interactions
+- **Lenis** — smooth scrolling
+- **Netlify** — hosting, edge proxy, form handling
+- **Cookiebot** — consent management (GDPR / TDDDG)
+- **Google Tag Manager** — analytics, consent-gated
+
+No CMS, no UI framework — hand-written CSS design system, content managed in a
+single typed translation layer.
+
+---
+
+## Key features
+
+**Multilingual architecture**
+- Three languages (German, English, Spanish) on their own URLs
+- Localised slugs per language — `/de/leistungen`, `/en/services`, `/es/servicios`
+- Automatic language detection from browser settings on first visit, with the
+  visitor's own choice always taking precedence
+- Language switcher that moves to the *same* page in the target language
+
+**SEO**
+- 30 statically generated pages, each with a unique title, meta description and a
+  single H1
+- Complete `hreflang` coverage including `x-default`
+- Canonical URLs, generated `sitemap.xml` and `robots.txt`
+- 301 redirects preserving previously indexed URLs
+
+**Privacy & compliance**
+- Cookiebot consent banner in auto-blocking mode — no tracking script loads
+  before consent
+- Google Tag Manager gated behind that consent
+- Trilingual legal pages: Impressum, Datenschutzerklärung, Cookie policy with an
+  auto-updating cookie declaration
+
+**Contact & conversion**
+- Multi-step contact form with service-selection chips, wired to Netlify Forms
+  with email notifications
+- Language-neutral submission values so the backend receives consistent data
+  regardless of the visitor's language
+
+**Design & motion**
+- Custom cursor, animated preloader, page transitions
+- Scroll-driven reveals, an auto-scrolling tilted image collage in the hero
+- Arch motif carried across hero, imagery and the loading screen
+- Fully responsive, with `prefers-reduced-motion` respected throughout
+
+---
+
+## Technical highlights (the interesting bits)
+
+**Restructuring a one-pager into a routed multilingual site**
+The site launched as a single page with anchor navigation. When SEO review showed
+that anchors can't be indexed as separate pages, the architecture was rebuilt
+around a route registry driving localised slugs, static generation, hreflang
+metadata and redirects — without changing the visual design. Sections were
+redistributed so no content appears on more than one page, avoiding
+self-competing duplicate content.
+
+**Consent-gated analytics done properly**
+Rather than dropping in the tracking snippet as supplied, Cookiebot's
+auto-blocking was loaded ahead of all application code so it can intercept
+trackers before they fire. The `<noscript>` half of the GTM snippet was
+deliberately omitted: it runs only when JavaScript is disabled, where consent
+can't be collected — including it would have loaded tracking without permission.
+
+**Performance work**
+First-load video weight was cut from **11 MB to 0.44 MB** by re-encoding the
+hero clip (6.7 MB → 0.44 MB) and the showreel (4.5 MB → 1.27 MB) and correcting
+preload behaviour. The `public/` directory dropped from **67 MB to 19 MB**. The
+preloader was moved from JavaScript-driven animation to CSS so it paints straight
+from the server HTML instead of waiting for hydration — removing a multi-second
+blank screen on first visits.
+
+**Edge-case URL handling**
+Repeated and trailing slashes (`/de///qualitaet`) resolve to canonical URLs, with
+handling at both the proxy layer and in the browser, since the CDN normalises
+paths before application code sees them.
+
+---
+
+## Results
+
+- 30 indexable pages, up from 4
+- Trilingual coverage with correct hreflang — each language version eligible to
+  rank in its own market
+- First-load media weight reduced by ~96%
+- GDPR-compliant analytics with no tracking before consent
+
+---
+
+## Screenshots to include
+
+Suggested order (files supplied separately):
+
+1. **Hero** — desktop, showing the headline, CTA and animated image collage
+2. **Services** — the card grid
+3. **About / Über uns** — the arch image with the values grid
+4. **References** — project grid
+5. **Contact** — form with service-selection chips and the contact person card
+6. **Mobile** — one or two responsive views
+7. *(Optional)* Cookie consent banner, to illustrate the compliance work
+
+---
+
+## Tags / keywords
+
+`Next.js` · `React` · `Framer Motion` · `Multilingual (i18n)` · `SEO` ·
+`GDPR / Cookie Consent` · `Netlify` · `Static Site Generation` · `Web Design` ·
+`Corporate Website`
+
+---
+
+## Notes for the developer
+
+- Live site: https://heitmann-baleares.es — safe to link directly
+- The client is a real, operating business; keep the tone professional
+- If a colour accent is needed for the project card, the brand orange is `#ff5a1f`
+  on an ivory background (`#faf7f2`)
+- Do **not** publish any client contact details, internal documents or the
+  repository — the live URL and screenshots only

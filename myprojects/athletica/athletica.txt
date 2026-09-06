@@ -1,0 +1,188 @@
+# Athletica Roll Call
+
+**Portfolio entry — content brief for the portfolio site**
+
+> Notes for the portfolio developer are in blockquotes like this one. Everything
+> else is copy you can lift as-is or trim. Screenshots will be supplied separately.
+
+---
+
+## One-liner
+
+A full-stack gym management platform for an outdoor group-fitness business in
+Adelaide, Australia — member bookings, attendance, coaching, nutrition, e-commerce,
+subscription billing, and a public marketing site, in a single application.
+
+## Short description (~50 words)
+
+Athletica Roll Call runs an outdoor fitness business end to end. Members book
+sessions, follow meal plans and track a six-week challenge; instructors take roll
+call and build workouts; admins manage memberships, staff, shop orders and Stripe
+subscriptions. It also serves the company's public marketing site from the same
+codebase and database.
+
+## Longer description (~150 words)
+
+Athletica is an outdoor group-fitness company running bootcamp-style sessions
+across multiple locations. They were coordinating members, attendance, rosters and
+payments across spreadsheets and messaging apps.
+
+I built a single platform to replace all of it. Members sign in to book sessions
+against their membership entitlements, follow assigned meal plans, log measurements
+and photos through a structured six-week challenge, and buy merchandise. Instructors
+run live roll call, build sessions from an exercise library, and track attendance.
+Admins manage memberships and pricing, staff and rosters, shop inventory and orders,
+and a tiered permission system that controls who can see what.
+
+Payments run on Stripe — recurring memberships, prepaid terms, session packs and shop
+orders — with a webhook-driven model where entitlements are only ever granted after
+Stripe confirms the money settled.
+
+The public marketing site is served from the same application, pulling coaches,
+locations, session times and live pricing straight from the admin database.
+
+---
+
+## Role
+
+Sole developer. Requirements, database design, architecture, backend, frontend,
+payments integration, deployment, and ongoing client communication.
+
+## Timeline
+
+January 2026 – ongoing (active development).
+
+---
+
+## Tech stack
+
+> Suggested grouping for tech-badge display.
+
+**Frontend**
+React 19 · TypeScript · Vite 6 · Tailwind CSS · Motion (Framer Motion)
+
+**Backend & data**
+Supabase (PostgreSQL, Auth, Storage, Row Level Security) · Vercel Serverless Functions
+
+**Payments**
+Stripe (Checkout, Customer Portal, Subscriptions, Webhooks)
+
+**Deployment**
+Vercel
+
+---
+
+## Key features
+
+> Pick whichever subset fits the layout. Ordered roughly by how well they
+> demo in a screenshot.
+
+**Session booking & roll call**
+Members book against their membership entitlement; instructors run live roll call and
+mark attendance. Capacity, session times and locations are all admin-managed.
+
+**Membership & billing**
+Three membership tiers across monthly, 6-month and 12-month terms, with weekly,
+fortnightly and 4-weekly billing options. Session packs and casual sessions sit
+alongside subscriptions. All handled through Stripe.
+
+**Six Week Challenge**
+A structured transformation program — measurements, progress photos, check-ins,
+milestones and assigned meal plans, with a coach-facing view of each participant.
+
+**Nutrition system**
+An ingredient database with per-unit macro tracking (per 100 g, per biscuit, per egg),
+a recipe builder that calculates macros automatically, meal plan assembly, and
+generated shopping lists. Includes bulk CSV import for ingredients and recipes.
+
+**Workout builder**
+An exercise library with media, used to compose sessions and assign them to programs.
+
+**Shop**
+Product catalogue, cart, discount codes, Stripe checkout and order management.
+
+**Community**
+Groups, messaging, announcements, events and an activity-points system.
+
+**Tiered admin permissions**
+Six role levels from member through to critical admin, enforced in the database with
+Row Level Security rather than only in the interface. Includes admin impersonation for
+support, and two-factor authentication.
+
+**Public marketing site**
+An animated, responsive marketing site — home, memberships, locations, about, FAQ,
+contact and legal pages — served from the same app. Coaches, locations, session times
+and pricing come live from the database, so the site can't drift out of date.
+
+---
+
+## Engineering highlights
+
+> This section is the one worth keeping if space is tight — it's the part that
+> shows judgment rather than just feature count.
+
+**Payments where the browser has no authority.**
+Nothing in the frontend can grant a membership or add session credits. The browser
+sends only a plan code, never an amount — prices are always looked up server-side, so a
+tampered request can't buy a 20-pack for a dollar. Entitlements are written by a single
+Stripe webhook, only after Stripe confirms the payment settled. Every webhook event ID
+is recorded before any work happens, so Stripe's at-least-once delivery can't hand out
+the same session pack twice.
+
+**Security enforced in the database, not the UI.**
+Access rules live in PostgreSQL Row Level Security policies, so they hold regardless of
+what the client sends. Anonymous visitors read purpose-built views that expose only
+public columns, keeping internal notes out of reach of the marketing site.
+
+**One codebase, two audiences.**
+The marketing site and the application share a database but not a bundle — the public
+site is code-split, so someone reading the pricing page never downloads the admin
+application.
+
+**Accessibility built into the motion work.**
+Every animation on the public site collapses to its finished state when a visitor has
+asked for reduced motion, including background video, which falls back to a still.
+
+---
+
+## Scale
+
+| | |
+|---|---|
+| TypeScript / TSX | ~44,000 lines |
+| React components | 119 |
+| Database tables & views | 45 |
+| Serverless API endpoints | 6 |
+| SQL migrations | 17 |
+
+---
+
+## Suggested screenshots
+
+> Ordered by what will read best in a portfolio grid. I'll supply the images.
+
+1. Public marketing site — homepage hero
+2. Member dashboard
+3. Session booking screen
+4. Roll call / attendance (instructor view)
+5. Six Week Challenge participant view
+6. Recipe builder with macro calculation
+7. Admin membership management
+8. Shop
+
+---
+
+## Links
+
+> Fill these in or remove the section — the app is private, so a live link may
+> only make sense for the public marketing site.
+
+- Live site: _to be added_
+- Case study: _optional_
+
+---
+
+## Tags
+
+`React` `TypeScript` `Supabase` `PostgreSQL` `Stripe` `Vercel` `Tailwind CSS`
+`Full-Stack` `SaaS` `Payments` `Fitness`

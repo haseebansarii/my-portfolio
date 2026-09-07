@@ -151,11 +151,11 @@ export default function TerminalWidget() {
       case 'contact':
         push(
           <Out>
-            {'email    → '}<Link href={`mailto:${personalInfo.email}`}>{personalInfo.email}</Link>
-            {'\nwhatsapp → '}<Link href={personalInfo.whatsapp}>chat with me</Link>
-            {'\ngithub   → '}<Link href={personalInfo.github}>haseebansarii</Link>
-            {'\nlinkedin → '}<Link href={personalInfo.linkedin}>haseebansarii</Link>
-            {'\nfiverr   → '}<Link href={personalInfo.fiverr}>haseebansari_</Link>
+            {personalInfo.email && <>{'email    → '}<Link href={`mailto:${personalInfo.email}`}>{personalInfo.email}</Link>{'\n'}</>}
+            {personalInfo.whatsapp && <>{'whatsapp → '}<Link href={personalInfo.whatsapp}>chat with me</Link>{'\n'}</>}
+            {personalInfo.github && <>{'github   → '}<Link href={personalInfo.github}>haseebansarii</Link>{'\n'}</>}
+            {personalInfo.linkedin && <>{'linkedin → '}<Link href={personalInfo.linkedin}>haseebansarii</Link>{'\n'}</>}
+            {'fiverr   → '}<Link href={personalInfo.fiverr}>haseebansari_</Link>
           </Out>
         );
         break;
@@ -163,7 +163,7 @@ export default function TerminalWidget() {
       case 'hire':
         push(
           <Out>
-            Excellent choice. Opening Fiverr… or reach me on <Link href={personalInfo.whatsapp}>WhatsApp</Link>.
+            Excellent choice. Opening Fiverr…{personalInfo.whatsapp && <> or reach me on <Link href={personalInfo.whatsapp}>WhatsApp</Link></>}.
           </Out>
         );
         window.open(personalInfo.fiverr, '_blank', 'noopener');

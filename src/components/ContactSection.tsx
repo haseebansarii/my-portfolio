@@ -8,6 +8,14 @@ import { personalInfo } from '../data/portfolio';
 import { isIOS, isMobile } from '../utils/deviceDetection';
 
 export default function ContactSection() {
+  // Blank hrefs mean the channel is hidden (Fiverr-safe mode — see portfolio.ts).
+  const otherChannels = [
+    { icon: Mail, label: 'Email', value: personalInfo.email, href: personalInfo.email ? `mailto:${personalInfo.email}` : '' },
+    { icon: MessageCircle, label: 'WhatsApp', value: '+92 323 773 8253', href: personalInfo.whatsapp },
+    { icon: Github, label: 'GitHub', value: 'github.com/haseebansarii', href: personalInfo.github },
+    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/haseebansarii', href: personalInfo.linkedin },
+  ].filter((channel) => channel.href);
+
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -101,15 +109,11 @@ export default function ContactSection() {
                 </a>
               </div>
 
+              {otherChannels.length > 0 && (
               <div className="p-6 rounded-2xl glass-panel glass-shine">
                 <h3 className="text-slate-900 dark:text-white font-semibold text-lg mb-4">Other Channels</h3>
                 <div className="space-y-3">
-                  {[
-                    { icon: Mail, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}` },
-                    { icon: MessageCircle, label: 'WhatsApp', value: '+92 323 773 8253', href: personalInfo.whatsapp },
-                    { icon: Github, label: 'GitHub', value: 'github.com/haseebansarii', href: personalInfo.github },
-                    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/haseebansarii', href: personalInfo.linkedin },
-                  ].map((channel) => (
+                  {otherChannels.map((channel) => (
                     <a
                       key={channel.label}
                       href={channel.href}
@@ -128,6 +132,7 @@ export default function ContactSection() {
                   ))}
                 </div>
               </div>
+              )}
             </div>
           </AnimatedSection>
 

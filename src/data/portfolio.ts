@@ -3,18 +3,43 @@ import {
   Layers, Zap, GitBranch, Terminal, Server, Palette
 } from 'lucide-react';
 
-export const personalInfo = {
-  name: 'Haseeb Ansari',
-  title: 'Full Stack Developer',
-  tagline: 'Building Digital Experiences That Matter',
-  bio: `I'm a passionate Full Stack Developer with deep expertise in the MERN stack, React Native (Expo), Supabase, and Firebase. I craft high-performance web and mobile applications that solve real-world problems. Available on Fiverr for freelance projects, I bring dedication, clean code, and pixel-perfect implementations to every project I work on.`,
-  fiverr: 'https://www.fiverr.com/haseebansari_',
+// ---------------------------------------------------------------------------
+// FIVERR SAFE MODE
+// Fiverr does not allow sharing off-platform contact details, so this flag
+// blanks out email, phone, WhatsApp, GitHub, LinkedIn and the street address
+// everywhere on the site. Every component that renders a contact channel skips
+// it when the value is empty, so this one flag is the whole switch.
+//
+// TO REVERT: set FIVERR_SAFE to false. Two static files also need restoring by
+// hand — see .fiverr-restore/ in the project root.
+// ---------------------------------------------------------------------------
+export const FIVERR_SAFE = true;
+
+const realContact = {
   github: 'https://github.com/haseebansarii',
   linkedin: 'https://www.linkedin.com/in/haseebansarii/',
   email: 'ansarihaseeb615@gmail.com',
   phone: '+92 3237738253',
   whatsapp: 'https://wa.me/923237738253',
   address: 'Bilal Park, Kamoke, Punjab, Pakistan',
+};
+
+const hiddenContact = {
+  github: '',
+  linkedin: '',
+  email: '',
+  phone: '',
+  whatsapp: '',
+  address: '',
+};
+
+export const personalInfo = {
+  name: 'Haseeb Ansari',
+  title: 'Full Stack Developer',
+  tagline: 'Building Digital Experiences That Matter',
+  bio: `I'm a passionate Full Stack Developer with deep expertise in the MERN stack, React Native (Expo), Supabase, and Firebase. I craft high-performance web and mobile applications that solve real-world problems. Available on Fiverr for freelance projects, I bring dedication, clean code, and pixel-perfect implementations to every project I work on.`,
+  fiverr: 'https://www.fiverr.com/haseebansari_',
+  ...(FIVERR_SAFE ? hiddenContact : realContact),
 };
 
 export const roles = [

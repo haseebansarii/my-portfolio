@@ -43,7 +43,7 @@ export default function CtaBanner() {
             </h2>
 
             <p className="text-slate-500 dark:text-gray-400 text-lg max-w-xl mx-auto mb-8">
-              Let's discuss your project and build something exceptional together. Get in touch via Fiverr, WhatsApp, or send me a message.
+              Let's discuss your project and build something exceptional together. Get in touch via Fiverr or send me a message.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -56,15 +56,17 @@ export default function CtaBanner() {
                 Hire Me on Fiverr
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a
-                href={personalInfo.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-8 py-3.5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all hover:shadow-lg backdrop-blur-sm"
-              >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp Chat
-              </a>
+              {personalInfo.whatsapp && (
+                <a
+                  href={personalInfo.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 px-8 py-3.5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all hover:shadow-lg backdrop-blur-sm"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp Chat
+                </a>
+              )}
               <a
                 href="#contact"
                 className="flex items-center gap-2 px-8 py-3.5 glass-btn rounded-xl text-slate-700 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white font-semibold transition-all"

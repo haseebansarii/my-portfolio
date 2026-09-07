@@ -166,15 +166,17 @@ export default function HeroSection() {
                 Hire Me on Fiverr
                 <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
-              <a
-                href={personalInfo.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all hover:shadow-lg backdrop-blur-sm"
-              >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp
-              </a>
+              {personalInfo.whatsapp && (
+                <a
+                  href={personalInfo.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all hover:shadow-lg backdrop-blur-sm"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp
+                </a>
+              )}
               <button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                 className="flex items-center gap-2 px-6 py-3 glass-btn rounded-xl text-slate-700 dark:text-white transition-all duration-300"

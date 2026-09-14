@@ -7,13 +7,16 @@ import SectionHeading from './SectionHeading';
 import { personalInfo } from '../data/portfolio';
 import { isIOS, isMobile } from '../utils/deviceDetection';
 
+/** "https://www.example.com/x/" -> "example.com/x" for display. */
+const stripScheme = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+
 export default function ContactSection() {
   // Blank hrefs mean the channel is hidden (Fiverr-safe mode — see portfolio.ts).
   const otherChannels = [
     { icon: Mail, label: 'Email', value: personalInfo.email, href: personalInfo.email ? `mailto:${personalInfo.email}` : '' },
-    { icon: MessageCircle, label: 'WhatsApp', value: '+92 323 773 8253', href: personalInfo.whatsapp },
-    { icon: Github, label: 'GitHub', value: 'github.com/haseebansarii', href: personalInfo.github },
-    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/haseebansarii', href: personalInfo.linkedin },
+    { icon: MessageCircle, label: 'WhatsApp', value: personalInfo.phone, href: personalInfo.whatsapp },
+    { icon: Github, label: 'GitHub', value: stripScheme(personalInfo.github), href: personalInfo.github },
+    { icon: Linkedin, label: 'LinkedIn', value: stripScheme(personalInfo.linkedin), href: personalInfo.linkedin },
   ].filter((channel) => channel.href);
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });

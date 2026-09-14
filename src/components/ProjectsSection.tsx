@@ -141,12 +141,12 @@ export default function ProjectsSection() {
         <AnimatedSection delay={0.3}>
           <div className="text-center mt-12">
             <a
-              href={personalInfo.github || personalInfo.fiverr}
+              href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-slate-400 hover:text-sky-600 dark:text-gray-500 dark:hover:text-sky-300 font-mono text-sm transition-colors group"
             >
-              {personalInfo.github ? 'View all projects on GitHub' : 'See my gigs on Fiverr'}
+              View all projects on GitHub
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>

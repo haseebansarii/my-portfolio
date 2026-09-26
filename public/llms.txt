@@ -7,6 +7,7 @@
 ## About
 - Name: Haseeb Ansari
 - Role: Full Stack Developer
+- Location: Kamoke, Punjab, Pakistan
 - Core skills: React.js, React Native, Node.js/Express, TypeScript, Next.js,
   MongoDB, PostgreSQL, Supabase, Firebase, Tailwind CSS, REST APIs / GraphQL
 
@@ -19,4 +20,7 @@
 - Contact: https://www.mhaseeb.dev/contact
 
 ## Links
+- GitHub: https://github.com/haseebansarii
+- LinkedIn: https://www.linkedin.com/in/haseebansarii/
 - Fiverr: https://www.fiverr.com/haseebansari_
+- Email: ansarihaseeb615@gmail.com

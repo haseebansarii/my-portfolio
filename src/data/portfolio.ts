@@ -13,7 +13,7 @@ import {
 // TO REVERT: set FIVERR_SAFE to false. Two static files also need restoring by
 // hand — see .fiverr-restore/ in the project root.
 // ---------------------------------------------------------------------------
-export const FIVERR_SAFE = true;
+export const FIVERR_SAFE = false;
 
 const realContact = {
   github: 'https://github.com/haseebansarii',
